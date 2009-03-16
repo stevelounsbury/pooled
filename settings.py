@@ -77,7 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'testsite.polls',
-    'testsite.pooled',
+    'pooled',
+    'polls',
     'django.contrib.admin',
 )
