@@ -1,5 +1,4 @@
 # Django settings for testsite project.
-# this is a test change
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
