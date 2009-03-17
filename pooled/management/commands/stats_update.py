@@ -3,8 +3,9 @@ import logging
 import sys
 from mechanize import Browser
 from BeautifulSoup import BeautifulSoup
+from optparse import make_option
 
-from django.core.management.base import AppCommand
+from django.core.management.base import AppCommand, NoArgsCommand
 from pooled.models import *
 
 logger = logging.getLogger("mechanize")
@@ -13,21 +14,36 @@ logger.setLevel(logging.INFO)
 
 class Command(AppCommand):
     help = "Updates the player and goalie stats for pooled"
+    
+    option_list = AppCommand.option_list + (
+        make_option('--debug', action='store_true', dest='debug',
+                    help='Dont actually fetch the stats update, just test'),
+    )
+    
+    debug = False
 
     def handle_app(self, app, **options):
+        self.debug = options.get('debug', False)
+        print self.debug
         player_stats = self.get_mechanized_browser("http://www.sportsnet.ca/hockey/nhl/stats/skaters")
         goalie_stats = self.get_mechanized_browser("http://www.sportsnet.ca/hockey/nhl/stats/goalies")
         # we're updating the stats, so all the old stats are not current
-        PlayerStat.objects.all().update(current=False)
-        GoalieStat.objects.all().update(current=False)
+        if not self.debug:
+            print "Setting all Player and Goalie stats to old."
+            PlayerStat.objects.all().update(current=False)
+            GoalieStat.objects.all().update(current=False)
         
-        self.iterate_pages(player_stats, self.get_player_stats, 1)
-        self.iterate_pages(goalie_stats, self.get_goalie_stats, 1)
+        limit = False
+        if self.debug:
+            limit = 1
+        self.iterate_pages(player_stats, self.get_player_stats, limit)
+        self.iterate_pages(goalie_stats, self.get_goalie_stats, limit)
         
-        updated = GoalieStat.objects.filter(current=True)
-        print 'Updated a total of %d goalies' % updated.count()
-        updated = PlayerStat.objects.filter(current=True)
-        print 'Updated a total of %d players' % updated.count()
+        if not self.debug:
+            updated = GoalieStat.objects.filter(current=True)
+            print 'Updated a total of %d goalies' % updated.count()
+            updated = PlayerStat.objects.filter(current=True)
+            print 'Updated a total of %d players' % updated.count()
 
     def get_player(self, col):
         # Figure out which player we are dealing
@@ -75,22 +91,26 @@ class Command(AppCommand):
             pim = int(col[14].string.strip())
             sh = int(col[15].string.strip())
             
-            stat = PlayerStat(
-                player=player,
-                current=True,
-                gp=gp,
-                g=g,
-                a=a,
-                pts=pts,
-                plus_minus=plus_minus,
-                ppg=ppg,
-                ppa=ppa,
-                ppp=ppp,
-                shg=shg,
-                gwg=gwg,
-                pim=pim,
-                sh=sh)
-            stat.save()
+            result = (player.name, g, a, pts)
+            if self.debug:
+                print "%s: %d g, %d assists, %d points" % result
+            else:
+                stat = PlayerStat(
+                    player=player,
+                    current=True,
+                    gp=gp,
+                    g=g,
+                    a=a,
+                    pts=pts,
+                    plus_minus=plus_minus,
+                    ppg=ppg,
+                    ppa=ppa,
+                    ppp=ppp,
+                    shg=shg,
+                    gwg=gwg,
+                    pim=pim,
+                    sh=sh)
+                stat.save()
             
     def get_goalie_stats(self, soup):
         table = soup.findAll('table')[5]
@@ -111,21 +131,25 @@ class Command(AppCommand):
             sha = int(col[11].string.strip())
             starts = int(col[12].string.strip())
             
-            stat = GoalieStat(
-                player=player,
-                current=True,
-                gp=gp,
-                w=w,
-                l=l,
-                otl=otl,
-                gaa=gaa,
-                save_pct=save_pct,
-                so=so,
-                en=en,
-                ga=ga,
-                sha=sha,
-                starts=starts)
-            stat.save()
+            result = (player.name, w, l, so)
+            if self.debug:
+                print "%s: %d wins, %d losses, %d so" % result
+            else:
+                stat = GoalieStat(
+                    player=player,
+                    current=True,
+                    gp=gp,
+                    w=w,
+                    l=l,
+                    otl=otl,
+                    gaa=gaa,
+                    save_pct=save_pct,
+                    so=so,
+                    en=en,
+                    ga=ga,
+                    sha=sha,
+                    starts=starts)
+                stat.save()
     
     def iterate_pages(self, mech, callback, limit=False):
         i = 0
