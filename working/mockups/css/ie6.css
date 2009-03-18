@@ -1,0 +1,23 @@
+/* Hooray for IE6!  */
+
+/* png bug fix */
+.box {background:url(../images/box-shadow.gif) bottom right no-repeat;} 
+ 
+ /*float bug fix */
+ .util-links {margin:20px 0 0 0;}
+
+/*double margin bug*/
+#header H1,
+#header H2,
+#header P{	
+	line-height:100%;
+	display:inline;
+	}
+	
+.edit-player .submit {
+	/*IE6 renders forms weird.... */
+	border-width:1px;
+	line-height:120%;
+	margin:2px 0 0 0;
+	}
+	

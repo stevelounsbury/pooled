@@ -1,0 +1,419 @@
+/*************************************************
+
+POOLED.
+A STEVE LOUNSBURY PROJECT
+
+CSS BY PLUSTWELVE.COM	 
+APRIL 2008									
+
+
+***************************************************
+	GENERIC
+	*/
+
+
+HTML {
+	font: 62.5%/160% "Georgia", "Lucida Sans","Lucida MS", Verdana, Arial, Helvetica, sans-serif;   
+	background:#FFF url('../images/html-bkg.gif') repeat-x;
+	color: #000;
+	border-top:solid 4px #000;
+	}
+	
+BODY {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background:url('../images/body-bkg.jpg') top center no-repeat;	
+	
+	}
+
+/***************************************************
+	HEADERS
+	
+	populate with each team eventually.
+	
+	*/	
+BODY.login {background:none;}
+BODY.team {background:url('../images/body-bkg-team.jpg') top center no-repeat;	}
+
+
+A{color:#a73131;}	
+A:hover{color:#e5e5e5;}
+
+#content A{color:#525252;}	
+#content A:hover{color:#e5e5e5;}
+
+A IMG {border:0;}
+
+	
+H1,H2,H3,H4,H5,H6,UL,LI, BLOCKQUOTE,IMG {
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-weight:normal;
+	}
+	
+/***************************************************
+	TABLES
+	 */
+
+TABLE{
+	width: 100%;
+	padding:0;
+	border-collapse: collapse;
+	}	
+
+TABLE THEAD TH H2{		
+	border-bottom: 1px solid #000;
+	line-height:120%;
+	padding:0 0 15px 0;
+	margin:0 0 10px 0;
+	}	
+
+TABLE TR TD {
+	text-align:center;
+	margin:0;
+	padding:3px 5px;
+	border-bottom: 1px solid #c8c8c8;
+	color:#525252;
+	}
+	
+#content TABLE THEAD TH  {
+	text-align:center;
+	border-bottom: 3px solid #000;
+	}
+	
+/***************************************************
+	TABLE COLUMNS
+	 */	
+
+.offense-col {background:#f2f2f2;}
+.defense-col {background:#e5e5e5;}
+.total-col {background:#a73131; color:#FFF; font-weight:bold;}
+.team-col{ color:#a4a4a4; font-size:80%;}
+.value-col {color:#a73131;font-weight:bold;}
+.goalie-header TH{padding:20px 0 0 0; border-bottom:solid 1px #000;text-align:center;}
+#content .owner-col, 
+#content .player-col{text-align:left;}
+
+.player-col EM {
+	font-size:80%;
+	color:#a4a4a4;
+	}
+
+/***************************************************
+	FORMS (GENERIC)
+	 */ 
+
+LABEL {
+	color:#4b626d;
+	font-weight:bold;
+	cursor:pointer;
+	}
+	
+INPUT:focus {
+	border: 2px solid #a73131;
+	}
+	
+INPUT,
+TEXTAREA,
+SELECT {
+	border: 1px solid #a4a4a4;
+	color: #a4a4a4;
+	font-size: 100%;
+	margin:5px 0;
+	font-size:140%;
+	font-family:"Georgia";
+	}
+		
+.text {width:100%;}	
+
+.submit {
+	margin:15px 0 0 0;
+	font-size:140%;
+	width:80px;
+	background:#a73131;
+	border:none;
+	padding:6px;
+	color:#FFF;
+	font-family:georgia;
+	}
+	
+#remember_login {
+	margin:4px 0 0 5px;
+	border:none;
+	}
+	
+/***************************************************
+	LOGIN FORM (splash page)
+	 */
+	 
+#login-form{
+	margin:0 auto;
+	width:265px;
+	padding:160px 164px 0 164px;
+	background:url('../images/ovechkin.jpg') top center no-repeat;	
+	height:500px;
+	
+	}
+#login-form H1 {
+	font-size:220%;
+	line-height:120%;
+	font-weight:normal;
+	color:#a73131;
+	padding:0 0 8px 0;
+	margin:0 0 30px 0;
+	padding:0 0 20px 0;
+	border-bottom:solid 1px #cccccc;
+	}
+#login-form H1 EM {
+	color:#a4a4a4;
+	font-style:normal;
+	font-size:80%;
+	}
+#login-form .text{
+	padding:8px;
+	width:204px;
+	}
+#login-form .submit{
+	margin:30px 0 20px 0;
+	}
+	
+	
+/***************************************************
+	WRAPPER
+	 */
+#wrapper {
+	width:960px;
+	margin: 0px auto;
+	text-align:left;
+	}
+.login #wrapper {
+	width:570px;
+	}
+
+.box {
+	padding:20px;
+	margin:20px 0;
+	background:url(../images/box-shadow.png) bottom right no-repeat;	
+	}
+	
+.box TABLE A {
+	color:#525252;
+	text-decoration:none;
+	}
+.box TABLE A:hover {
+	color:#e5e5e5;
+	}
+
+/***************************************************
+	HEADER
+	*/
+#header {
+	height:160px;
+	margin:0 0 40px 0;
+	}
+	
+#header H1 {
+	font-size:440%;
+	margin:60px 0 0px 365px;
+	float:left;
+	}
+	
+#header H2 {
+	margin:0 0 0 365px;
+	width:500px; /*for ie stupidity */
+	font-size:130%;
+	color:#a73131;
+	float:left;
+	}
+	
+#header P {
+	margin:70px 40px 0 0;
+	float:right;
+	font-size:120%;
+	}
+
+/***************************************************
+	PROFILE 
+	 */
+	 
+#profile {
+	margin:20px 0 0 0; 
+	}
+
+#profile IMG {
+	float:left;
+	margin:0 10px 0 0;
+	}
+
+#profile H3 {
+	font-size:180%;
+	margin:10px 0 0 0;
+	}
+
+#profile EM {
+	color:#a4a4a4;
+	}
+	
+/***************************************************
+	SIDEBAR
+	 */
+#sidebar {
+ 	width:330px;
+	float:left;
+	margin:0 15px 0 0;
+	font-size:120%;
+	line-height:180%;
+	 }	 
+	
+#sidebar TD {
+	text-align:left;
+	}
+	
+/***************************************************
+	CONTENT
+ 	*/
+#content {
+	font-size:140%;
+	line-height:160%;
+	float:left;
+	/*padding is added from .box - width adjusted accordingly */
+	width:560px;
+	margin:0 15px 0 0;
+	}
+
+#content H1 {
+	font-size:180%;
+	line-height:120%;
+	font-weight:normal;
+	margin:0 0 20px 0;
+	color:#a73131;
+	padding:0 0 8px 0;
+	}
+	
+#content H2{
+	font-weight:normal;font-size:150%;
+	margin:10px 0;
+	padding:20px 0;
+	color:#000;
+	border-bottom:solid 1px #cccccc;
+	border-top:solid 1px #cccccc;
+	}
+
+/*edit team name link */	
+#content H2 A {
+	color:#a4a4a4;
+	text-decoration:none;
+	font-size:80%;
+	}
+	
+/* user selection on who wins the cup */	
+#content H2.cup-winners {
+	color:#a73131; 
+	font-size:120%;
+	padding:5px 0;
+	border-top:solid 1px #f2f2f2;
+	border-bottom:solid 1px #f2f2f2;
+	}	
+
+#content H3 {
+	font-size:100%;
+	margin:10px 0;
+	color:#a73131;
+	border-bottom:solid 1px #cccccc;
+	padding:10px 0;
+	}
+/***************************************************
+	UTILITY LINKS
+	The links associated with a section (sorting for example)
+ 	*/
+	
+.util-links {
+	margin:30px 0 0 0;
+	float:right;
+	}
+	
+.util-links A {
+	padding:4px 10px;
+	}
+	
+.util-links .selected {
+	background:#f2f2f2;
+	}
+	
+#leaderboard {
+	margin:0 0 20px 0;
+	}
+/***************************************************
+	EDIT PLAYER
+	inline form for choosing roster players
+	
+ 	*/	
+.edit-player TD{
+	text-align:left;
+	padding:20px 0 20px 70px;
+	background:#f2f2f2;
+	}
+	
+.edit-player INPUT,
+.edit-player SELECT {
+	width:195px;
+	font-size:120%;
+	float:left;	
+	margin:0 15px 0 0;
+	}
+	
+.edit-player INPUT:focus {
+	border:solid 1px #a73131;
+	}
+	
+.edit-player .submit {
+	border:solid 2px #a73131; /*to match the inputs */
+	float:left;
+	width:60px;
+	margin:0;
+	font-size:100%;
+	padding:0;
+	}
+	
+/***************************************************
+	TRASH TALK
+	 */	
+
+#trash-talk H5{
+	font-size:130%;
+	}
+	
+#trash-talk SMALL {
+	float:left;
+	width:50px;
+	margin:10px 0 0 0;
+	color:#a73131;
+	font-weight:bold;
+	}
+	
+#trash-talk P {
+	margin:10px 0 10px 60px;
+	}
+	
+#trash-talk LI {
+	padding:15px 0;
+	border-bottom:solid 1px #CCC;
+	}
+	
+/***************************************************
+	FOOTER
+	 */
+
+#footer {
+	clear:both;
+	margin:20px;
+	font-size:120%;
+	color:#a4a4a4;
+	}
+	
+#footer P {
+	float:right;
+	}
+
