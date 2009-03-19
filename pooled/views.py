@@ -4,4 +4,4 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 
 def index(request):
-    return HttpResponse('Pooled.')
+    return render_to_response('pooled/index.html')

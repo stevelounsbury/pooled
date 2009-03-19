@@ -1,0 +1,137 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>{% block title %}Pooled.{% endblock title %}</title>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+		
+	<link rel="stylesheet" href="/pooled_media/css/default.css" type="text/css" media="all" />
+
+	
+	<!--[if IE]>
+		<link rel="stylesheet" href="/pooled_media/css/ie.css" type="text/css" media="all" />
+	<![endif]-->
+	
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="/pooled_media/css/ie6.css" type="text/css" media="all" />
+	<![endif]-->
+</head>
+<body id="homepage">
+
+<div id="wrapper">
+	<div id="header">
+		<p>Logged in as Shawn McCann | <a href="#">Logout</a></p>
+		<h1>Pooled.</h1>
+		<h2>76design's Second Annual Playoff Pool</h2>	
+	</div>
+    
+	<div id="sidebar">
+		<div id="profile" class="box">
+			<img src="/pooled_media/images/teams/NYR.gif" alt="The Maple Leafs Will Win the Stanley Cup"/>
+			<h3>Shawn McCann</h3>
+			<ul>
+				<li>current rank : <em>2/10</em></li>
+				<li>points behind leader : <em>44</em></li>
+				<li><a href="#">Edit My Team</a></li>
+			</ul>			
+			<div style="clear:both"></div>
+		</div>
+		<div id="top-performers" class="box">
+			<table summary="The Top Performers In the Playoffs">
+				<thead>
+					<tr>
+						<th colspan="3"><h2>Top Performers</h2></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="value-col">22pts</td>
+						<td><a href="#">J. Sakic</a></td>
+						<td class="team-col">Colorado Avalanche</td>
+					</tr>
+					<tr>
+						<td class="value-col">12pts</td>
+						<td><a href="#">M. Gaborik</a></td>
+						<td class="team-col">Minnesota Wild</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="popular-picks" class="box">
+			<table summary="The Most Popular Players Chosen In this Pool">
+				<thead>
+					<tr>
+						<th colspan="3"><h2>Most Popular Picks</h2></th>
+					</tr>
+				</thead>
+			<tbody>
+					<tr>
+						<td class="value-col">100%</td>
+						<td><a href="#">J. Sakic</a></td>
+						<td class="team-col">Colorado Avalanche</td>
+					</tr>
+					<tr>
+						<td class="value-col">90%</td>
+						<td><a href="#">S. Crosby</a></td>
+						<td class="team-col">Pittsburgh Penguins</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div> <!-- END SIDEBAR -->
+	
+	<div id="content" class="box">
+        {% block content %}
+		<p class="util-links"><a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a></p>
+		<h2>Leaderboard</h2>
+		
+		<table summary="Leaderboard, and Score Breakdown" id="leaderboard">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th class="owner-col">Team</th>
+					<th class="stat">GL</th>
+					<th class="stat">AS</th>
+					<th class="stat">WN</th>
+					<th class="stat">SO</th>
+					<th class="stat">TOT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td class="owner-col"><a href="#">Shawn McCann</a></td>
+					<td class="offense-col">64</td>
+					<td class="offense-col">42</td>
+					<td class="defense-col">5</td>
+					<td class="defense-col">3</td>
+					<td class="total-col">66</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td class="owner-col"><a href="#">Steve Lounsbury</a></td>
+					<td class="offense-col">64</td>
+					<td class="offense-col">42</td>
+					<td class="defense-col">5</td>
+					<td class="defense-col">3</td>
+					<td class="total-col">66</td>
+				</tr>
+			</tbody>
+		</table>
+        <!-- Trash talk here -->
+        {% endblock content %}
+    </div>
+
+	<div style="clear:both"></div>
+	
+	<div id="footer">
+		<p>Thanks to nhl.com and gettyimages.com</p>
+	</div>
+
+</div>	
+</body>
+</html>
