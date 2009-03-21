@@ -82,4 +82,5 @@ INSTALLED_APPS = (
     'pooled',
     'polls',
     'django.contrib.admin',
+    'django.contrib.admindocs',
 )
