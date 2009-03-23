@@ -1,0 +1,5 @@
+== Install mechanize and BeautifulSoup
+== These packages are needed for the stats update script.
+
+sudo easy_install mechanize
+sudo easy_install BeautifulSoup

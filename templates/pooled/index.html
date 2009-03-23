@@ -1,6 +1,7 @@
 {% extends "pooled/layout.html" %}
 
 {% block content %}
+{{ block.super }}
 <h1>{{ object_list.count }}</h1>
 {% for player in object_list %}
     {{ player.name }}<br />

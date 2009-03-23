@@ -1,0 +1,19 @@
+		<div id="top-performers" class="box">
+			<table summary="The Top Performers In the Playoffs">
+				<thead>
+					<tr>
+						<th colspan="3"><h2>Top Performers</h2></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for score in leaders %}
+					<tr>
+						<td class="value-col">{{ score.pts }}pts</td>
+						<td><a href="http://www.sportsnet.ca/hockey/nhl/player/{{ score.player.sportsnet }}/" target="_blank">{{ score.player.name }}</a></td>
+						<td class="team-col">{{ score.player.team.name }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<p>Last updated: {{ last_updated|date:"M d Y @ H:i" }}</p>
+		</div>
