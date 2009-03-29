@@ -1,0 +1,6 @@
+{% extends "pooled/layout_homepage.html" %}
+{% block content %}
+    {% if current_pick_round %}
+        {{ current_pick_round.current_round.name }}
+    {% endif %}
+{% endblock content %}

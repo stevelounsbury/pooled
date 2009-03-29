@@ -28,6 +28,9 @@ class Round(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     
+    def get_current_round(self):
+        return self.objects.filter(current=True)[0]
+        
     def __unicode__(self):
         return self.name
 
@@ -93,3 +96,10 @@ class CupPick(models.Model):
     pool = models.ForeignKey(Pool)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+class PickRound(models.Model):
+    current_round = models.ForeignKey(Round)
+    notes = models.TextField()
+    can_pick_cup = models.BooleanField(default=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
