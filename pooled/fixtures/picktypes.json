@@ -1,0 +1,110 @@
+[
+  {
+    "model": "pooled.picktype",
+    "pk": 1,
+    "fields": {
+        "name": "East Right Wing",
+        "position": "RW",
+        "conference": "E"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 2,
+    "fields": {
+        "name": "East Center",
+        "position": "C",
+        "conference": "E"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 3,
+    "fields": {
+        "name": "East Left Wing",
+        "position": "LW",
+        "conference": "E"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 4,
+    "fields": {
+        "name": "East Defense 1",
+        "position": "D",
+        "conference": "E"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 5,
+    "fields": {
+        "name": "East Defense 2",
+        "position": "D",
+        "conference": "E"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 6,
+    "fields": {
+        "name": "East Goalie",
+        "position": "G",
+        "conference": "E"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 7,
+    "fields": {
+        "name": "West Right Wing",
+        "position": "RW",
+        "conference": "W"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 8,
+    "fields": {
+        "name": "West Center",
+        "position": "C",
+        "conference": "W"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 9,
+    "fields": {
+        "name": "West Left Wing",
+        "position": "LW",
+        "conference": "W"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 10,
+    "fields": {
+        "name": "West Defense 1",
+        "position": "D",
+        "conference": "W"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 11,
+    "fields": {
+        "name": "West Defense 2",
+        "position": "D",
+        "conference": "W"
+    }
+  },
+  {
+    "model": "pooled.picktype",
+    "pk": 12,
+    "fields": {
+        "name": "West Goalie",
+        "position": "G",
+        "conference": "W"
+    }
+  }
+]

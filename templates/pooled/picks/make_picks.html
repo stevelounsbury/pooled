@@ -1,0 +1,40 @@
+{% extends "pooled/layout_homepage.html" %}
+{% block content %}
+    {% if current_pick_round %}
+        <h1>Make picks for {{ current_pick_round.current_round.name }}</h1>
+        <form action="" method="post">
+            <p>{{ pick_form.as_ul }}</p>
+            <input type="submit" value="Submit" />
+        </form>
+        <script>
+        $("#id_position").change( function() { 
+            $("#id_player").attr( { value : "", disabled: "disabled" } ); 
+            $("#id_team").attr( { value:"", disabled: "" } ); 
+            $("#autocomplete").hide(); 
+        });
+        Pooled.autocomplete( 
+        { 
+            url: "/autocomplete/teams/", 
+            min_length: -1, 
+            complete_target: "#id_team", 
+            id_target: "#id_team_id", 
+            params: { pick_type: function() { return $("#id_position").val(); } }, 
+            after_select: function() { $("#id_player").attr( { value : "", disabled : "" }); }
+        });
+        Pooled.autocomplete( 
+        { 
+            url: "/autocomplete/players/", 
+            min_length: -1, 
+            complete_target: "#id_player", 
+            id_target: "#id_player_id", 
+            params: {
+                team_id: function() { return $("#id_team_id").val(); },
+                pick_type: function() { return $("#id_position").val();}
+            },
+            after_select: function() {  }
+        });
+        </script>
+        <div id="autocomplete">
+        </div>
+    {% endif %}
+{% endblock content %}

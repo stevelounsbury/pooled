@@ -3,10 +3,23 @@ from django.contrib.auth.models import User
 # Create your models here.
 from datetime import datetime
 
+CONFERENCE_CHOICES = (
+    ('E', 'Eastern Conference'),
+    ('W', 'Western Conference'),
+)
+POSITION_CHOICES = (
+    ('C', 'Center'),
+    ('G', 'Goalie'),
+    ('D', 'Defense'),
+    ('RW', 'Right Wing'),
+    ('LW', 'Left Wing'),
+)
+
 class Team(models.Model):
     name = models.CharField(max_length=128)
     image = models.CharField(max_length=128)
     slug = models.CharField(max_length=128)
+    conference = models.CharField(max_length=1, choices=CONFERENCE_CHOICES)
     active = models.BooleanField(default=True)
     
     def __unicode__(self):
@@ -82,13 +95,23 @@ class PlayerStat(models.Model):
     def __unicode__(self):
         return "%s, %s: %d pts" % (self.player.name, self.created.strftime("%B %d %Y"), self.pts)
 
+class PickType(models.Model):
+    name = models.CharField(max_length=30)
+    position = models.CharField(max_length=8, choices=POSITION_CHOICES)
+    conference = models.CharField(max_length=1, choices=CONFERENCE_CHOICES)
+    
+    def __unicode__(self):
+        return self.name
+
 class Pick(models.Model):
     user = models.ForeignKey(User)
     player = models.ForeignKey(Player)
     round = models.ForeignKey(Round)
     pool = models.ForeignKey(Pool)
+    pick_type = models.ForeignKey(PickType)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    unique_together = ('user', 'round', 'pool', 'pick_type')
 
 class CupPick(models.Model):
     user = models.ForeignKey(User)
@@ -99,7 +122,7 @@ class CupPick(models.Model):
 
 class PickRound(models.Model):
     current_round = models.ForeignKey(Round)
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
     can_pick_cup = models.BooleanField(default=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()

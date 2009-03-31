@@ -19,8 +19,14 @@
 	<!--[if IE 6]>
 		<link rel="stylesheet" href="/pooled_media/css/ie6.css" type="text/css" media="all" />
 	<![endif]-->
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+	  // Load jQuery
+	  google.load("jquery", "1");
+	</script>
+	<script src="/pooled_media/js/pooled.js"></script>
 </head>
-<body id="{% block body_id %}homepage{% endblock %}">
+<body class="{% block body_class %}homepage{% endblock %}">
 <div id="wrapper">
 	
 	{% block layout %}{% endblock layout %}
