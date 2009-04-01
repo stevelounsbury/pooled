@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
-from django.utils.simplejson.encoder import JSONEncoder
+from django.core import serializers
 
 from models import *
 from forms import *
@@ -36,12 +36,21 @@ def pick_players(request):
                               context_instance=RequestContext(request))
 
 @login_required
-def autocomplete(request, type="team"):
-    test = [
-        {'id': 1, 'name': type},
-        {'id': 2, 'name': "player 3"}
-    ]
+def autocomplete(request, type="teams"):
+    try:
+        if type == 'teams':
+            pick_type = PickType.objects.filter(pk=request.GET['pick_type'])
+            queryset = Team.objects.filter(conference=pick_type[0].conference)
+        elif type == 'players':
+            pick_type = PickType.objects.get(pk=request.GET['pick_type'])
+            team = Team.objects.get(pk=request.GET['team_id'])
+            queryset = Player.objects.filter(team=team, position=pick_type.position)
+        else:
+            raise Http404
+    except:
+        raise Http404
+    
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
-    response.write(JSONEncoder().encode(test))
+    response.write(serializers.serialize("json", queryset, fields=('id', 'name')))
     return response

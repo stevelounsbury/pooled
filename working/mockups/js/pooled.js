@@ -43,11 +43,11 @@ var Pooled = {
 							$(_helper).css( { left: $(_target).css("left"), top: parseInt($(_target).css("top")) + $(_target).height() + 10 + "px" } );
 							$(_helper).empty().append("<ul>").hide();
 							$.each(json, function(i, n) {
-								$("<li>" + n.name + "</li>")
+								$("<li>" + n.fields['name'] + "</li>")
 								.hover( function () { $(this).addClass("hover"); }, function () { $(this).removeClass("hover"); } ) 
 								.click( function () {
-									$(_target).attr("value", n.name);
-									$(_id_target).attr("value", n.id);
+									$(_target).attr("value", n.fields['name']);
+									$(_id_target).attr("value", n.pk);
 									$(_helper).fadeOut("slow");
 									if (typeof(_after_select) == "function") { _after_select(); }
 								})
