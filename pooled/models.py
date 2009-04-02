@@ -112,6 +112,9 @@ class Pick(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     unique_together = ('user', 'round', 'pool', 'pick_type')
+    
+    def __unicode__(self):
+        return "%s picked %s in %s" % (self.user.username, self.player.name, self.round.name)
 
 class CupPick(models.Model):
     user = models.ForeignKey(User)

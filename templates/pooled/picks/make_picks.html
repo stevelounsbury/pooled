@@ -1,7 +1,12 @@
 {% extends "pooled/layout_homepage.html" %}
+{% block body_class %}team{% endblock %}
 {% block content %}
     {% if current_pick_round %}
-        <h1>Make picks for {{ current_pick_round.current_round.name }}</h1>
+		<h2 class="cup-winners">The New York Rangers Will Win The Stanley Cup <a href="#">(edit)</a></h2>
+        <p class="util-links">
+            <a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a>
+        </p>
+		<h2>{{ user.username }}</h2>
         <form action="" method="post">
             <p>{{ pick_form.as_ul }}</p>
             <input type="submit" value="Submit" />
@@ -36,5 +41,33 @@
         </script>
         <div id="autocomplete">
         </div>
+		
+		<h3>Eastern Conference</h3>
+		
+		<table summary="Eastern Conference Roster" id="east-team-listing">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th class="owner-col">Player</th>
+					<th class="stat">GL</th>
+					<th class="stat">AS</th>
+					<th class="stat">TOT</th>
+					<th>Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+                {% for pick in user_picks %}
+                    <tr>
+                        <td>{{ pick.player.position }}</td>
+                        <td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</em></td>
+                        <td>64</td>
+                        <td>42</td>
+                        <td>66</td>
+                        <td><a href="#">edit</a></td>
+                    </tr>
+                {% endfor %}
+			</tbody>
+		</table>
+		
     {% endif %}
 {% endblock content %}

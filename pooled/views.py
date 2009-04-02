@@ -23,11 +23,35 @@ def pick_players(request):
         return render_to_response("pooled/picks/closed.html",
                                   context_instance=RequestContext(request))
     
-    user_picks = Pick.objects.filter(user=request.user,
-                                     pool__id=1,
-                                     round=current_pick_round.current_round)
+    this_pool = Pool.objects.get(pk=1)
     
-    pick_form = PickForm()
+    if request.method == 'POST':
+        pick_form = PickForm(request.POST)
+        if pick_form.is_valid():
+            player = Player.objects.get(pk=pick_form.cleaned_data['player_id'])
+            existing_pick = Pick.objects.filter(
+                pool=this_pool,
+                pick_type=pick_form.cleaned_data['position'],
+                round=current_pick_round.current_round,
+                user=request.user
+                )
+            if existing_pick:
+                existing_pick[0].player=player
+                existing_pick[0].save()
+            else:
+                pick = Pick(pick_type=pick_form.cleaned_data['position'],
+                            player=player,
+                            pool=this_pool,
+                            round=current_pick_round.current_round,
+                            user=request.user)
+                pick.save()
+            pick_form = PickForm()
+    else:
+        pick_form = PickForm()
+    
+    user_picks = Pick.objects.filter(user=request.user,
+                                     pool=this_pool,
+                                     round=current_pick_round.current_round)
     
     return render_to_response(template_to_render,
                               {'current_pick_round': current_pick_round,
