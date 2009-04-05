@@ -52,19 +52,89 @@
 					<th class="stat">GL</th>
 					<th class="stat">AS</th>
 					<th class="stat">TOT</th>
-					<th>Edit</th>
 				</tr>
 			</thead>
 			<tbody>
-                {% for pick in user_picks %}
-                    <tr>
-                        <td>{{ pick.player.position }}</td>
-                        <td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</em></td>
-                        <td>64</td>
-                        <td>42</td>
-                        <td>66</td>
-                        <td><a href="#">edit</a></td>
-                    </tr>
+                {% for pick in eastern_players %}
+                <tr>
+                    <td>{{ pick.player.position }}</td>
+                    <td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</em></td>
+                    {% for stat in pick.player.playerstat_set.all %}
+                        {% if stat.current %}
+                            <td>{{ stat.g }}</td>
+                            <td>{{ stat.a }}</td>
+                            <td>{{ stat.pts }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr class="goalie-header">
+					<th>&nbsp;</th>
+					<th class="owner-col">Goalie</th>
+					<th class="stat">WN</th>
+					<th class="stat">SO</th>
+					<th class="stat">GAA</th>
+				</tr>
+                {% for pick in eastern_goalies %}
+                <tr>
+					<td>G</td>
+					<td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</td>
+                    {% for stat in pick.player.goaliestat_set.all %}
+                        {% if stat.current %}
+                            <td>{{ stat.w }}</td>
+                            <td>{{ stat.so}}</td>
+                            <td>{{ stat.gaa }}</td>
+                        {% endif %}
+                    {% endfor %}
+				</tr>
+                {% endfor %}
+			</tbody>
+		</table>
+		<h3>Western Conference</h3>
+		
+		<table summary="Western Conference Roster" id="west-team-listing">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th class="owner-col">Player</th>
+					<th class="stat">GL</th>
+					<th class="stat">AS</th>
+					<th class="stat">TOT</th>
+				</tr>
+			</thead>
+			<tbody>
+                {% for pick in western_players %}
+                <tr>
+                    <td>{{ pick.player.position }}</td>
+                    <td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</em></td>
+                    {% for stat in pick.player.playerstat_set.all %}
+                        {% if stat.current %}
+                            <td>{{ stat.g }}</td>
+                            <td>{{ stat.a }}</td>
+                            <td>{{ stat.pts }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr class="goalie-header">
+					<th>&nbsp;</th>
+					<th class="owner-col">Goalie</th>
+					<th class="stat">WN</th>
+					<th class="stat">SO</th>
+					<th class="stat">GAA</th>
+				</tr>
+                {% for pick in western_goalies %}
+                <tr>
+					<td>G</td>
+					<td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</td>
+                    {% for stat in pick.player.goaliestat_set.all %}
+                        {% if stat.current %}
+                            <td>{{ stat.w }}</td>
+                            <td>{{ stat.so}}</td>
+                            <td>{{ stat.gaa }}</td>
+                        {% endif %}
+                    {% endfor %}
+				</tr>
                 {% endfor %}
 			</tbody>
 		</table>

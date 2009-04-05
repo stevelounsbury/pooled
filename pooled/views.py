@@ -49,13 +49,18 @@ def pick_players(request):
     else:
         pick_form = PickForm()
     
-    user_picks = Pick.objects.filter(user=request.user,
-                                     pool=this_pool,
-                                     round=current_pick_round.current_round)
+    p = Pick()
+    eastern_players = p.get_eastern_picks(request.user, this_pool, current_pick_round.current_round)
+    western_players = p.get_western_picks(request.user, this_pool, current_pick_round.current_round)
+    eastern_goalies = p.get_eastern_goalies(request.user, this_pool, current_pick_round.current_round)
+    western_goalies = p.get_western_goalies(request.user, this_pool, current_pick_round.current_round)
     
     return render_to_response(template_to_render,
                               {'current_pick_round': current_pick_round,
-                               'user_picks': user_picks,
+                               'eastern_players': eastern_players,
+                               'western_players': western_players,
+                               'eastern_goalies': eastern_goalies,
+                               'western_goalies': western_goalies,
                                'pick_form': pick_form},
                               context_instance=RequestContext(request))
 

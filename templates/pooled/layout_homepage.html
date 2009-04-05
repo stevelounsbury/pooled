@@ -6,7 +6,12 @@
             <p>Logged in as <em>{{ user.username }}</em> | <a href="{% url django.contrib.auth.views.logout_then_login %}">Logout</a></p>
         {% endif %}
         <h1>Pooled.</h1>
-        <h2>76design's Second Annual Playoff Pool</h2>	
+        <h2>76design's Second Annual Playoff Pool</h2>
+        <ul id="navigation">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">NHL Stats</a></li>
+            <li><a href="#">Picks</a></li>
+        </ul>
     </div>
     
     <div id="sidebar">
@@ -16,7 +21,7 @@
             <ul>
                 <li>current rank : <em>2/10</em></li>
                 <li>points behind leader : <em>44</em></li>
-                <li><a href="#">Edit My Team</a></li>
+                <li><a href="{% url pooled.views.">Edit My Team</a></li>
             </ul>           
             <div style="clear:both"></div>
         </div>

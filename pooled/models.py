@@ -115,6 +115,31 @@ class Pick(models.Model):
     
     def __unicode__(self):
         return "%s picked %s in %s" % (self.user.username, self.player.name, self.round.name)
+    
+    def get_eastern_picks(self, user, pool, round):
+        return self.get_conference_players(user, pool, round, 'E')
+    def get_eastern_goalies(self, user, pool, round):
+        return self.get_conference_goalies(user, pool, round, 'E')
+    def get_western_picks(self, user, pool, round):
+        return self.get_conference_players(user, pool, round, 'W')
+    def get_western_goalies(self, user, pool, round):
+        return self.get_conference_goalies(user, pool, round, 'W')
+    
+    def get_conference_players(self, user, pool, round, conference):
+        return Pick.objects.filter(
+            user=user,
+            round=round,
+            pool=pool,
+            player__team__conference=conference,
+        ).exclude(player__position='G')
+    def get_conference_goalies(self, user, pool, round, conference):
+        return Pick.objects.filter(
+            user=user,
+            round=round,
+            pool=pool,
+            player__team__conference=conference,
+            player__position='G'
+        )
 
 class CupPick(models.Model):
     user = models.ForeignKey(User)
