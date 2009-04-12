@@ -3,8 +3,10 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+from django.db.models.signals import post_save
 
 from models import *
 from forms import *
@@ -83,3 +85,26 @@ def autocomplete(request, type="teams"):
     response['Content-Type'] = "text/javascript"
     response.write(serializers.serialize("json", queryset, fields=('id', 'name')))
     return response
+
+def user_register(request):
+    registration_form = PooledRegForm()
+    
+    if request.method == "POST":
+        registration_form=PooledRegForm(request.POST)
+        if registration_form.is_valid():
+            user = User.objects.create_user(registration_form.cleaned_data['username'],
+                                            registration_form.cleaned_data['email'],
+                                            registration_form.cleaned_data['password1'])
+            profile = user.get_profile()
+            profile.favourite_team = registration_form.cleaned_data['favourite_team']
+            profile.save()
+    
+    return render_to_response('pooled/register.html',
+                              {'registration_form': registration_form},
+                              context_instance=RequestContext(request))
+    
+def signal_user_profile(sender, instance, created, **kwargs):
+    if created==True:
+        profile = PooledProfile(user=instance, favourite_team=Team.objects.all()[1])
+        profile.save()
+post_save.connect(signal_user_profile, sender=User)

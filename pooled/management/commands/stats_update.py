@@ -12,6 +12,9 @@ logger = logging.getLogger("mechanize")
 logger.addHandler(logging.StreamHandler(sys.stdout))
 logger.setLevel(logging.INFO)
 
+PLAYER_TABLE_OFFSET = 7
+GOALIE_TABLE_OFFSET = 6
+
 class Command(AppCommand):
     help = "Updates the player and goalie stats for pooled"
     
@@ -72,7 +75,7 @@ class Command(AppCommand):
         return p
     
     def get_player_stats(self, soup):
-        table = soup.findAll('table')[6]
+        table = soup.findAll('table')[PLAYER_TABLE_OFFSET]
         records = list()
         for tr in table.findAll('tr')[1:]:
             col = tr.findAll('td')
@@ -113,7 +116,7 @@ class Command(AppCommand):
                 stat.save()
             
     def get_goalie_stats(self, soup):
-        table = soup.findAll('table')[5]
+        table = soup.findAll('table')[GOALIE_TABLE_OFFSET]
         records = list()
         for tr in table.findAll('tr')[1:]:
             col = tr.findAll('td')

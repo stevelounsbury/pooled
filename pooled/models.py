@@ -23,7 +23,7 @@ class Team(models.Model):
     active = models.BooleanField(default=True)
     
     def __unicode__(self):
-        return self.name
+        return self.name.upper()
 
 class Player(models.Model):
     team = models.ForeignKey(Team)
@@ -154,3 +154,9 @@ class PickRound(models.Model):
     can_pick_cup = models.BooleanField(default=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+
+
+class PooledProfile(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    favourite_team = models.ForeignKey(Team, blank=True)
+    
