@@ -14,6 +14,21 @@ from forms import *
 @login_required
 def index(request):
     return render_to_response('pooled/index.html', context_instance=RequestContext(request))
+
+@login_required
+def pick_cup(request):
+    template_to_render = "pooled/picks/make_cup.html"
+    try:
+        current_pick_round = PickRound.objects.filter(start_date__lte=datetime.now(),
+                                                  end_date__gte=datetime.now())[0]
+        if not current_pick_round.can_pick_cup:
+            raise Exception
+    except:
+        return render_to_response("pooled/picks/cup_closed.html",
+                                  context_instance=RequestContext(request))
+    
+    this_pool = Pool.objects.get(pk=1)
+    return render_to_response('pooled/picks/make_cup_pick.html')
     
 @login_required
 def pick_players(request):
@@ -98,6 +113,7 @@ def user_register(request):
             profile = user.get_profile()
             profile.favourite_team = registration_form.cleaned_data['favourite_team']
             profile.save()
+            return HttpResponseRedirect("/login")
     
     return render_to_response('pooled/register.html',
                               {'registration_form': registration_form},

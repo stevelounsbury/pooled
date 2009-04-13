@@ -4,6 +4,7 @@
    <div id="login-form">
         <form action="" class="box" method="post">
             <h1>Pooled. <em>Register</em></h1>
+            <p><a href="{% url django.contrib.auth.views.login %}">Go to login form</a></p>
             {{registration_form}}
             <input type="submit" value="register" />
             <input type="hidden" name="next" value="{{ next }}" />

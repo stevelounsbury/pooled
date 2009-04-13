@@ -4,6 +4,7 @@
    <div id="login-form">
 		<form action="" class="box" method="post">
 			<h1>Pooled. <em>Login</em></h1>
+            <h2><a href="{% url pooled.views.user_register %}">No account? Register.</a></h2>
 			
             {% if form.errors %}
             <p class="error">Your username and password didn't match, try again.</p>
