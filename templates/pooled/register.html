@@ -1,0 +1,14 @@
+{% extends "pooled/base.html" %}
+{% block body_class %}login{% endblock body_class %}
+{% block layout %}
+   <div id="login-form">
+        <form action="" class="box" method="post">
+            <h1>Pooled. <em>Register</em></h1>
+            {{registration_form}}
+            <input type="submit" value="register" />
+            <input type="hidden" name="next" value="{{ next }}" />
+            <div style="clear:both">
+            </div>
+        </form>
+    </div>
+{% endblock layout %}
