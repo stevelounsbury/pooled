@@ -1,3 +1,4 @@
+import datetime
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -19,8 +20,8 @@ def index(request):
 def pick_cup(request):
     template_to_render = "pooled/picks/make_cup.html"
     try:
-        current_pick_round = PickRound.objects.filter(start_date__lte=datetime.now(),
-                                                  end_date__gte=datetime.now())[0]
+        current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
+                                                  end_date__gte=datetime.datetime.now())[0]
         if not current_pick_round.can_pick_cup:
             raise Exception
     except:
@@ -55,8 +56,8 @@ def pick_cup(request):
 def pick_players(request):
     template_to_render = "pooled/picks/make_picks.html"
     try:
-        current_pick_round = PickRound.objects.filter(start_date__lte=datetime.now(),
-                                                  end_date__gte=datetime.now())[0]
+        current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
+                                                  end_date__gte=datetime.datetime.now())[0]
     except:
         return render_to_response("pooled/picks/closed.html",
                                   context_instance=RequestContext(request))
