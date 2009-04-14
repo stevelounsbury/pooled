@@ -2,7 +2,11 @@ from django import forms
 from pooled.models import *
 from django.utils.translation import ugettext_lazy as _
 
-
+class CupPickForm(forms.ModelForm):
+    class Meta:
+        model = CupPick
+        fields = ('team')
+        
 class PickForm(forms.Form):
     position = forms.ModelChoiceField(queryset=PickType.objects.all())
     team = forms.CharField(max_length=30)

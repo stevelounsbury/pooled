@@ -1,0 +1,14 @@
+        <div id="profile" class="box">
+            {% if cup_pick %}
+            <img src="/pooled_media/images/teams/{{ cup_pick.team|upper }}.gif" alt=""/>
+            {% else %}
+            <p><a href="{% url pooled.views.pick_players %}">Go pick your cup winner</a></p>
+            {% endif %}
+            <h3>{{ user.username }}</h3>
+            <ul>
+                <li>current rank : <em>2/10</em></li>
+                <li>points behind leader : <em>44</em></li>
+                <li><a href="{% url pooled.views.">Edit My Team</a></li>
+            </ul>           
+            <div style="clear:both"></div>
+        </div>

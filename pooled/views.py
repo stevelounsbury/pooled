@@ -24,11 +24,32 @@ def pick_cup(request):
         if not current_pick_round.can_pick_cup:
             raise Exception
     except:
-        return render_to_response("pooled/picks/cup_closed.html",
-                                  context_instance=RequestContext(request))
+        request.user.message_set.create(message='Cup picks closed for this round.')
+        return HttpResponseRedirect("/picks/")
     
     this_pool = Pool.objects.get(pk=1)
-    return render_to_response('pooled/picks/make_cup_pick.html')
+    my_pick = False
+    try:
+        my_pick = CupPick.objects.filter(user=request.user, pool=this_pool)[0]
+        pick_form = CupPickForm(instance=my_pick)
+    except:
+        pick_form = CupPickForm()
+    
+    if request.method == "POST":
+        pick_form = CupPickForm(request.POST)
+        if bool(my_pick) & pick_form.is_valid():
+            my_pick.team = pick_form.cleaned_data['team']
+            my_pick.save()
+            request.user.message_set.create(message='Updated cup pick.')
+        else:
+            my_pick = CupPick()
+            my_pick.team = Team.objects.get(pk=request.POST['team'])
+            my_pick.user = request.user
+            my_pick.pool = this_pool
+            my_pick.save()
+            request.user.message_set.create(message='Saved new pick.')
+    
+    return HttpResponseRedirect("/picks/")
     
 @login_required
 def pick_players(request):
@@ -41,6 +62,15 @@ def pick_players(request):
                                   context_instance=RequestContext(request))
     
     this_pool = Pool.objects.get(pk=1)
+    
+    try:
+        my_pick = CupPick.objects.filter(user=request.user, pool=this_pool)[0]
+        cup_pick_form = CupPickForm(instance=my_pick)
+    except:
+        cup_pick_form = CupPickForm()
+        
+    # the two form elements named id-team tend to clash a bit
+    cup_pick_form.auto_id = 'cup-pick-%s'
     
     if request.method == 'POST':
         pick_form = PickForm(request.POST)
@@ -78,6 +108,7 @@ def pick_players(request):
                                'western_players': western_players,
                                'eastern_goalies': eastern_goalies,
                                'western_goalies': western_goalies,
+                               'cup_pick_form': cup_pick_form,
                                'pick_form': pick_form},
                               context_instance=RequestContext(request))
 

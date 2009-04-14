@@ -1,4 +1,7 @@
 {% extends "pooled/layout_homepage.html" %}
 {% block content %}
-    <p>Yay, make your cup pick now</p>
+    <form action="{% url pooled.views.pick_cup %}" method="post">
+        {{ pick_form.team }} will win the cup.
+        <input type="submit" name="submit" value="Submit" />
+    </form>
 {% endblock content %}

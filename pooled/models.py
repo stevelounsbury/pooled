@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User 
 # Create your models here.
-from datetime import datetime
 
 CONFERENCE_CHOICES = (
     ('E', 'Eastern Conference'),
@@ -143,7 +142,7 @@ class Pick(models.Model):
 
 class CupPick(models.Model):
     user = models.ForeignKey(User)
-    player = models.ForeignKey(Player)
+    team = models.ForeignKey(Team)
     pool = models.ForeignKey(Pool)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -155,8 +154,34 @@ class PickRound(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
 
-
 class PooledProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     favourite_team = models.ForeignKey(Team, blank=True)
+
+class PointsScheme(models.Model):
+    pool = models.ForeignKey(Pool)
+    current = models.BooleanField()
+    g = models.IntegerField('points for a goal')
+    a = models.IntegerField('points for an assist')
+    gwg = models.IntegerField('points for a game winning goal')
+    so = models.IntegerField('points for a shutout')
+    win = models.IntegerField('points for a win')
+    created = models.DateTimeField(auto_now_add=True)
+    
+class LeaderboardStat(models.Model):
+    user = models.ForeignKey(User)
+    pool = models.ForeignKey(Pool)
+    points_scheme = models.ForeignKey(PointsScheme)
+    current = models.BooleanField()
+    is_leader = models.BooleanField()
+    is_worst = models.BooleanField()
+    change = models.IntegerField('position change')
+    rank = models.IntegerField()
+    points_behind = models.IntegerField('points behind leader')
+    g = models.IntegerField('goals')
+    a = models.IntegerField('assists')
+    gwg = models.IntegerField('game winning goals')
+    so = models.IntegerField('shut outs')
+    win = models.IntegerField('wins')
+    created = models.DateTimeField(auto_now_add=True)
     

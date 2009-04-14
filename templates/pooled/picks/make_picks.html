@@ -2,7 +2,13 @@
 {% block body_class %}team{% endblock %}
 {% block content %}
     {% if current_pick_round %}
-		<h2 class="cup-winners">The New York Rangers Will Win The Stanley Cup <a href="#">(edit)</a></h2>
+        
+        {% if current_pick_round.can_pick_cup %}
+        <form action="{% url pooled.views.pick_cup %}" method="post">
+            <h2 class="cup-winners">{{ cup_pick_form.team }} will win the Stanley Cup.
+            <input type="submit" name="submit" value="Submit" /></h2>
+        </form>
+        {% endif %}
         <p class="util-links">
             <a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a>
         </p>

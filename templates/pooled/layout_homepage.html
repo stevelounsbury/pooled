@@ -15,16 +15,7 @@
     </div>
     
     <div id="sidebar">
-        <div id="profile" class="box">
-            <img src="/pooled_media/images/teams/{{ user.get_profile.favourite_team }}.gif" alt="The Maple Leafs Will Win the Stanley Cup"/>
-            <h3>{{ user.username }}</h3>
-            <ul>
-                <li>current rank : <em>2/10</em></li>
-                <li>points behind leader : <em>44</em></li>
-                <li><a href="{% url pooled.views.">Edit My Team</a></li>
-            </ul>           
-            <div style="clear:both"></div>
-        </div>
+        {% user_profile user %}
         {% scoring_leaders %}
         <div id="popular-picks" class="box">
             <table summary="The Most Popular Players Chosen In this Pool">
@@ -49,6 +40,15 @@
         </div>
     </div> <!-- END SIDEBAR -->
 
+    {% if messages %}
+        <div id="message">
+            <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     <div id="content" class="box">
         {% block content %}
         <p class="util-links"><a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a></p>
