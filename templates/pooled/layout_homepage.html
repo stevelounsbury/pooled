@@ -4,7 +4,7 @@
 {% block layout %}
     <div id="header">
         <p><a href="{% url pooled.views.index %}">Leaderboard</a> | <a href="{% url pooled.views.pick_players %}">Picks</a></p>
-        <h1>Pooled.</h1>
+        <h1>Pool'd.</h1>
         <h2>76design's Second Annual Playoff Pool</h2>
     </div>
     
@@ -13,7 +13,9 @@
         {% scoring_leaders %}
     </div> <!-- END SIDEBAR -->
 
-    {% if messages %}
+   
+    <div id="content" class="box">
+      {% if messages %}
         <div id="message">
             <ul>
             {% for message in messages %}
@@ -22,8 +24,8 @@
             </ul>
         </div>
     {% endif %}
-    <div id="content" class="box">
-        {% block content %}
+
+    {% block content %}
         <h2>Leaderboard <em>Coming soon</em></h2>
         <p><a href="{% url pooled.views.pick_players %}">Go make your picks &raquo;</a></p>
         {% endblock content %}

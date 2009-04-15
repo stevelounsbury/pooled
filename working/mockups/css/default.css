@@ -1,427 +1,1 @@
-/*************************************************
-
-POOLED.
-A STEVE LOUNSBURY PROJECT
-
-CSS BY PLUSTWELVE.COM	 
-APRIL 2008									
-
-
-***************************************************
-	GENERIC
-	*/
-
-
-HTML {
-	font: 62.5%/160% "Georgia", "Lucida Sans","Lucida MS", Verdana, Arial, Helvetica, sans-serif;   
-	background:#FFF url('../images/html-bkg.gif') repeat-x;
-	color: #000;
-	border-top:solid 4px #000;
-	}
-	
-BODY {
-	margin: 0px;
-	padding: 0px;
-	text-align: center;
-	}
-	
-
-
-
-BODY#login {background:none;}
-BODY {background:url('../images/body-bkg-team.jpg') top center no-repeat;	}
-	
-
-
-/***************************************************
-	LOGIN FORM (splash page)
-    
-	 */
-	 
-#signup-form,
-#login-form{
-	margin:0 auto;
-	width:265px;
-	padding:120px 164px 0 164px;
-	height:543px;
-	}
-#login FORM LABEL {
-    padding:3px 0 0 0;
-
-    }
-#login FORM .text,
-#login FORM .submit  {
-    font-family:Georgia;
-    font-size:140%;
-    }
-    
-#login FORM H1 {
-	font-size:220%;
-	line-height:120%;
-	font-weight:normal;
-	color:#a73131;
-	padding:0 0 8px 0;
-	margin:0 0 15px 0;
-	padding:0 0 20px 0;
-	border-bottom:solid 1px #cccccc;
-	}
-#login FORM H1 EM {
-	color:#a4a4a4;
-	font-style:normal;
-	font-size:80%;
-	}
-#login SELECT {
-	padding:8px;
-	width:222px;
-    font-family:Georgia;
-    font-size:140%;
-    
-    }
-#login .signup,
-#login .login-link{
-	display:block;
-	text-decoration:none;
-	}
-#login .login-link	{
-    text-align:right;
-	}	
-    
-/***************************************************
-	PICK SELCT FORM (Make your pics)
-    
-	*/
-#pick-form {
-    padding:20px 0 0 0;
-    }
-   
-#pick-form UL {
-    margin:0 37px 0 0; 
-    padding:0;
-    width:245px;
-    float:left;
-    }
-#pick-form LI {list-style:none;}
-#pick-form .text, 
-#pick-form SELECT {
-    width:144px;
-    }
-#pick-form LABEL {
-    width:100px;
-    }
-#pick-form .submit {
-    float:right;
-    margin:10px 0;
-    }
-    
-  #cup-winner-form SELECT {
-    width:200px;
-    margin:0 10px 0 0;
-    }
-
-/***************************************************
-	WRAPPER
-    
-	*/
-    
-#wrapper {
-	width:960px;
-	margin: 0px auto;
-	text-align:left;
-	}
-	
-#login #wrapper {
-	width:570px;
-	background:url('../images/ovechkin.jpg') top center no-repeat;	
-	}
-
-.box {
-	padding:20px;
-	margin:20px 0;
-	background:url(../images/box-shadow.png) bottom right no-repeat;	
-	}
-	
-.box TABLE A {
-	color:#525252;
-	text-decoration:none;
-	}
-    
-.box TABLE A:hover {
-	color:#e5e5e5;
-	}
-    
-.box TABLE A EM {
-    color:#A4A4A4;
-    font-size:80%;
-    margin:0 0 0 5px;
-    }
-    
-/***************************************************
-	HEADER
-    
-	*/
-#header {
-	height:160px;
-	margin:0 0 40px 0;
-	}
-	
-#header H1 {
-	font-size:440%;
-	margin:60px 0 0px 365px;
-	float:left;
-	}
-	
-#header H2 {
-	margin:0 0 0 365px;
-	width:500px; /*for ie stupidity */
-	font-size:130%;
-	color:#a73131;
-	float:left;
-	}
-	
-#header P {
-	margin:70px 40px 0 0;
-	float:right;
-	font-size:120%;
-	}
-
-/***************************************************
-	PROFILE 
-	 */
-	 
-#profile {
-	margin:20px 0 0 0; 
-	}
-    
-#profile LI {
-    list-style:none;
-    }
-    
-#profile IMG {
-	float:left;
-	margin:0 10px 0 0;
-	}
-
-#profile H3 {
-	font-size:180%;
-	margin:10px 0 0 0;
-	}
-
-#profile EM {
-	color:#a4a4a4;
-	}
-	
-/***************************************************
-	SIDEBAR
-	 */
-#sidebar {
- 	width:330px;
-	float:left;
-	margin:0 15px 0 0;
-	font-size:120%;
-	line-height:180%;
-	}	 
-	
-#sidebar TD {
-	text-align:left;
-	}
-	
-/***************************************************
-	CONTENT
-    
- 	*/
-#content {
-	font-size:140%;
-	line-height:160%;
-	float:left;
-	/*padding is added from .box - width adjusted accordingly  - 600 total */
-	width:560px;
-	margin:0 15px 0 0;
-	}
-
-#content H1 {
-	line-height:120%;
-	font-weight:normal;
-	margin:0 0 20px 0;
-	color:#a73131;
-	padding:0 0 8px 0;
-	}
-	
-#content H2{
-	font-weight:normal;
-	margin:10px 0;
-	padding:20px 0;
-	color:#000;
-	border-bottom:solid 1px #cccccc;
-	border-top:solid 1px #cccccc;
-	}
-
-/*edit team name link */	
-#content H2 A {
-	color:#a4a4a4;
-	text-decoration:none;
-	font-size:80%;
-	}
-	
-/* user selection on who wins the cup */	
-#content H2.cup-winners {
-	color:#a73131; 
-	font-size:120%;
-	padding:5px 0;
-	border:none;
-	}	
-
-#content H3 {
-	font-size:100%;
-	margin:10px 0;
-	color:#a73131;
-	border-bottom:solid 1px #cccccc;
-	padding:10px 0;
-	}
-    
-/***************************************************
-	UTILITY LINKS
-	The links associated with a section (sorting for example)
-    
- 	*/
-	
-.util-links {
-	margin:30px 0 0 0;
-	float:right;
-	}
-    
-.util-links A {	padding:4px 10px;}
-.util-links .selected {background:#f2f2f2;}
-#leaderboard {margin:0 0 20px 0;}
-    
-  .view-all{
-    display:block;
-    text-align:right;
-    text-decoration:none;
-    margin:5px 5px 0 5px;
-    }  
- /***************************************************
-	RINK MAP
-    
- 	*/   
-    
-#rink-map {
-    float:left;
-    background:url(../images/rink.gif) no-repeat;
-    width:278px;
-    height:141px;
-    position:relative;
-    }
-    
- #rink-map A {
-    position:absolute;
-    background:url(../images/o.png) no-repeat;
-    width:12px;
-    height:11px;
-    text-indent:-999em;
-    display:block;
-    }
-   #rink-map A.west{ 
-   background:url(../images/x.png) no-repeat;
-   }
-   
-  .west-rw{top:110px; left:125px;}
-  .west-c {top:65px; left:125px;}
-  .west-lw {top:20px; left:125px;}
-  .west-d1 {top:30px; left:80px;}
-  .west-d2 {top:100px; left:80px;}
-  .west-g {top:65px; left:30px;}  
-  
-  .east-lw {top:110px; right:125px;}
-  .east-c {top:65px; right:125px;}
-  .east-rw {top:20px; right:125px;}
-  .east-d1 {top:30px; right:80px;}
-  .east-d2 {top:100px; right:80px;}
-  .east-g {top:65px; right:30px;}
-  
-  
-#autocomplete { position: absolute; display: none; line-height: 1.2em; background-color: white; border: 1px solid #888; margin: 0px; padding: 0px; }
-#autocomplete ul { margin: 4px; padding: 0; font-size: 0.9em; }
-#autocomplete li { cursor: pointer; margin: 4px 0; padding: 0; list-style-type: none; }
-#autocomplete li.hover { background-color: #ffb; }
-
-  
-  
-  
-/***************************************************
-	TRASH TALK
-    
-	*/	
-
-#trash-talk H5{
-	font-size:130%;
-	}
-	
-#trash-talk SMALL {
-	float:left;
-	width:50px;
-	margin:0;
-	color:#a73131;
-	font-weight:bold;
-	}
-	
-#trash-talk P {
-	margin:10px 0 10px 60px;
-	}
-	
-#trash-talk LI {
-	padding:15px 0;
-	border-bottom:solid 1px #CCC;
-    list-style:none;
-	}
-	
-/***************************************************
-	FOOTER
-    
-	*/
-
-#footer {
-	clear:both;
-	margin:20px;
-	font-size:120%;
-	color:#a4a4a4;
-	}
-	
-#footer P {
-	float:right;
-	}
-/***************************************************
-	AUTO COMPLETE
-	
-	 */		
-	 
-.ui-autocomplete-results ul {
-	padding:0;
-	margin:0;
-	text-align:left;
-	background:red;
-	}
-	
-.ui-autocomplete-results ul  li {
-	padding:7px 5px;
-	margin:0;
-	cursor:pointer;
-	color:#fff;
-	font-size:12px;
-	font-weight:bold;
-	}
-	
-.ui-autocomplete-results ul  li strong {
-	background:#b40000;
-	}
-	
-.ui-autocomplete-results ul li.ui-autocomplete-even {
-	background:#242424;
-	}
-	
-.ui-autocomplete-results ul li.ui-autocomplete-odd {
-	background:#313131;
-	}
-	
-.ui-autocomplete-results ul li.ui-autocomplete-over {
-	background:#b40000;
-	}
+/*************************************************POOLED.A STEVE LOUNSBURY PROJECTCSS BY PLUSTWELVE.COM	 APRIL 2008									***************************************************	GENERIC	*/HTML {	font: 62.5%/160% "Georgia", "Lucida Sans","Lucida MS", Verdana, Arial, Helvetica, sans-serif;   	background:#FFF url('../images/html-bkg.gif') repeat-x;	color: #000;	border-top:solid 4px #000;	}	BODY {	margin: 0px;	padding: 0px;	text-align: center;	}BODY#login {background:none;}BODY {background:url('../images/body-bkg-team.jpg') top center no-repeat;	}	#message {	padding: 10px 10px 10px 32px;	border: 1px dashed white;	font-weight: bold;	color: #FFF; 	background: #a73131;    margin:0 0 30px 0;    font-weight:normal;	}#message UL {    margin:0;    padding:0;    list-style:none;    }/***************************************************	LOGIN FORM (splash page)    	 */	 #signup-form,#login-form{	margin:0 auto;	width:265px;	padding:120px 164px 0 164px;	height:543px;	}#login FORM LABEL {    padding:3px 0 0 0;    }#login FORM .text,#login FORM .submit  {    font-family:Georgia;    font-size:140%;    }    #login FORM H1 {	font-size:220%;	line-height:120%;	font-weight:normal;	color:#a73131;	padding:0 0 8px 0;	margin:0 0 15px 0;	padding:0 0 20px 0;	border-bottom:solid 1px #cccccc;	}#login FORM H1 EM {	color:#a4a4a4;	font-style:normal;	font-size:80%;	}#login SELECT {	padding:8px;	width:222px;    font-family:Georgia;    font-size:140%;        }#login .signup,#login .login-link{	display:block;	text-decoration:none;	}#login .login-link	{    text-align:right;	}	    /***************************************************	PICK SELCT FORM (Make your pics)    	*/#pick-form {    position:relative;    padding:20px 0 0 0;    }   #pick-form UL {    margin:0 37px 0 0;     padding:0;    width:245px;    float:left;    }#pick-form LI {list-style:none;}#pick-form .text, #pick-form SELECT {    width:144px;    }     #pick-form INPUT:focus{    width:140px;    }     #pick-form INPUT.submit:focus{    width:80px;    }    #pick-form LABEL {    width:100px;    }#pick-form .submit {    float:right;    margin:10px 0;    }      #cup-winner-form SELECT {    width:200px;    margin:0 10px 0 0;    }/***************************************************	WRAPPER    	*/    #wrapper {	width:960px;	margin: 0px auto;	text-align:left;	}	#login #wrapper {	width:570px;	background:url('../images/ovechkin.jpg') top center no-repeat;		}.box {	padding:20px;	margin:20px 0;	background:url(../images/box-shadow.png) bottom right no-repeat;		}	.box TABLE A {	color:#525252;	text-decoration:none;	}    .box TABLE A:hover {	color:#e5e5e5;	}    .box TABLE A EM {    color:#A4A4A4;    font-size:80%;    margin:0 0 0 5px;    }    /***************************************************	HEADER    	*/#header {	height:160px;	margin:0 0 40px 0;	}	#header H1 {	font-size:440%;	margin:60px 0 0px 365px;	float:left;	}	#header H2 {	margin:0 0 0 365px;	width:500px; /*for ie stupidity */	font-size:130%;	color:#a73131;	float:left;	}	#header P {	margin:70px 40px 0 0;	float:right;	font-size:120%;	}/***************************************************	PROFILE 	 */	 #profile {	margin:20px 0 0 0; 	}    #profile LI {    list-style:none;    }    #profile IMG {	float:left;	margin:0 10px 0 0;	}#profile H3 {	font-size:180%;	margin:10px 0 0 0;	}#profile EM {	color:#a4a4a4;	}	/***************************************************	SIDEBAR	 */#sidebar { 	width:330px;	float:left;	margin:0 15px 0 0;	font-size:120%;	line-height:180%;	}	 	#sidebar TD {	text-align:left;	}	/***************************************************	CONTENT     	*/#content {	font-size:140%;	line-height:160%;	float:left;	/*padding is added from .box - width adjusted accordingly  - 600 total */	width:560px;	margin:0 15px 0 0;	}#content H1 {	line-height:120%;	font-weight:normal;	margin:0 0 20px 0;	color:#a73131;	padding:0 0 8px 0;	}	#content H2{	font-weight:normal;	margin:10px 0;	padding:20px 0;	color:#000;	border-bottom:solid 1px #cccccc;	border-top:solid 1px #cccccc;	}/*edit team name link */	#content H2 A {	color:#a4a4a4;	text-decoration:none;	font-size:80%;	}	/* user selection on who wins the cup */	#content H2.cup-winners {	color:#a73131; 	font-size:120%;	padding:5px 0;	border:none;	}	#content H3 {	font-size:100%;	margin:10px 0;	color:#a73131;	border-bottom:solid 1px #cccccc;	padding:10px 0;	}    /***************************************************	UTILITY LINKS	The links associated with a section (sorting for example)     	*/	.util-links {	margin:25px 0 0 0;	float:right;	}    .util-links A {	padding:4px 10px;}.util-links .selected {background:#f2f2f2;}#leaderboard {margin:0 0 20px 0;}      .view-all{    display:block;    text-align:right;    text-decoration:none;    margin:5px 5px 0 5px;    }   /***************************************************	RINK MAP     	*/       #rink-map {    float:left;    background:url(../images/rink.gif) no-repeat;    width:278px;    height:141px;    position:relative;    }     #rink-map A {    position:absolute;    background:url(../images/o.png) no-repeat;    width:12px;    height:11px;    text-indent:-999em;    display:block;    }   #rink-map A.west{    background:url(../images/x.png) no-repeat;   }     .west-rw{top:110px; left:125px;}  .west-c {top:65px; left:125px;}  .west-lw {top:20px; left:125px;}  .west-d1 {top:30px; left:80px;}  .west-d2 {top:100px; left:80px;}  .west-g {top:65px; left:30px;}      .east-lw {top:110px; right:125px;}  .east-c {top:65px; right:125px;}  .east-rw {top:20px; right:125px;}  .east-d1 {top:30px; right:80px;}  .east-d2 {top:100px; right:80px;}  .east-g {top:65px; right:30px;}          /***************************************************	TRASH TALK    	*/	#trash-talk H5{	font-size:130%;	}	#trash-talk SMALL {	float:left;	width:50px;	margin:0;	color:#a73131;	font-weight:bold;	}	#trash-talk P {	margin:10px 0 10px 60px;	}	#trash-talk LI {	padding:15px 0;	border-bottom:solid 1px #CCC;    list-style:none;	}	/***************************************************	FOOTER    	*/#footer {	clear:both;	margin:20px;	font-size:120%;	color:#a4a4a4;	}	#footer P {	float:right;	}    /***************************************************	AUTO COMPLETE		 */		   #autocomplete { position: absolute; display: none; line-height: 1.2em; background-color: white; border: 1px solid #888; margin: 0px; padding: 0px; right:0; width:300px !important; }#autocomplete ul {width:296px; margin: 4px; padding: 0; font-size: 0.9em; }#autocomplete li { cursor: pointer; margin: 4px 0; padding: 0; list-style-type: none; }#autocomplete li.hover { background-color: #ffb; }	 

@@ -7,8 +7,8 @@
             {% if form.errors %}
             <p class="error">Your username and password didn't match, try again.</p>
             {% endif %}
-            <input type="text" class="text" name="username" value="Username" />
-            <input type="password" class="text" name="password" value="Password" />
+            <input type="text" class="text" name="username" value="Username" onclick="this.value='';" onfocus="this.select()"  />
+            <input type="password" class="text" name="password" value="Password" onclick="this.value='';" onfocus="this.select()" />
             <label for="remember_me" class="checkbox">Remember me on this computer</label>
             <input  type="checkbox" name="remember_login" id="remember_login" value="1"  checked />
             <a href="{% url pooled.views.user_register %}" class="signup">Sign Up For A New Account</a>
