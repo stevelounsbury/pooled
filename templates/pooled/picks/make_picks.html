@@ -1,18 +1,25 @@
 {% extends "pooled/layout_homepage.html" %}
-{% block body_class %}team{% endblock %}
+{% block body_id %}team{% endblock %}
+{% block body_class %}{{ user.get_profile.favourite_team.slug|lower }}{% endblock %}
 {% block content %}
     {% if current_pick_round %}
         
         {% if current_pick_round.can_pick_cup %}
         <form action="{% url pooled.views.pick_cup %}" method="post" id="cup-winner-form">
-            <h2 class="cup-winners">The {{ cup_pick_form.team }} will win the Stanley Cup.
-            <input type="submit" name="submit" value="Submit" /></h2>
+            <h2 class="cup-winners">The {{ cup_pick_form.team }} will win the Stanley Cup.</h2>
+            <script>
+                $(document).ready(function() {
+                    $('#cup-pick-team').change(function() {
+                        $('#cup-winner-form').submit();
+                    })
+                })
+            </script>
         </form>
         {% endif %}
         <p class="util-links">
             <a href="#" class="selected">round 1</a> | round 2 | round 3 | round 4</a>
         </p>
-		<h2>{{ user.username }}</h2>
+        <h2>{{ user.username }}</h2>
         <form action="" method="post" id="pick-form" class="clearfix">
             <ul class="clearfix">
             {{ pick_form.as_ul }}
