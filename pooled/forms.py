@@ -23,7 +23,7 @@ class PickForm(forms.Form):
 class PooledRegForm(forms.ModelForm):
     username = forms.RegexField(label=_("Username"), max_length=30, regex=r'^\w+$',
         error_message=_("Must contain only letters, numbers and underscores."))
-    email = forms.EmailField(label=_("Email"))
+    email = forms.EmailField(label=_("Email"), error_message="Must be a valid email")
     password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
     favourite_team = forms.ModelChoiceField(queryset=Team.objects.all(),

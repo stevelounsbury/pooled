@@ -1,28 +1,19 @@
 {% extends "pooled/base.html" %}
 {% block body_id %}login{% endblock %}
 {% block layout %}
-   <div id="login-form">
-		<form action="" class="box" method="post">
-			<h1>Pooled. <em>Login</em></h1>
-            <h2><a href="{% url pooled.views.user_register %}">No account? Register.</a></h2>
-			
+    <div id="login-form">
+        <form action="" class="box clearfix" method="post">
+            <h1>Pooled. <em>Login</em></h1>
             {% if form.errors %}
             <p class="error">Your username and password didn't match, try again.</p>
             {% endif %}
-				
-            <input id="id_username" type="text" class="text" name="username" maxlength="30" value="Username" />		
-				<input id="id_password" type="password" class="text" name="password" value="Password" />						
-				<label for="remember_me" class="checkbox">Remember me on this computer</label>
-				<input  type="checkbox" name="remember_login" id="remember_login" value="1"  checked />
-			
-				
-            <input type="submit" value="login" />
+            <input type="text" class="text" name="username" value="Username" />
+            <input type="password" class="text" name="password" value="Password" />
+            <label for="remember_me" class="checkbox">Remember me on this computer</label>
+            <input  type="checkbox" name="remember_login" id="remember_login" value="1"  checked />
+            <a href="{% url pooled.views.user_register %}" class="signup">Sign Up For A New Account</a>
+            <input type="submit" name="submit" class="submit" Value="Login" />
             <input type="hidden" name="next" value="{{ next }}" />
-
-
-				<!--<button type="submit" name="submit" class="submit">Login</button>-->
-				<div style="clear:both">
-				</div>
-		</form>
-	</div>
+        </form>
+    </div>
 {% endblock layout %}

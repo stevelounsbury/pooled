@@ -1,15 +1,33 @@
 {% extends "pooled/base.html" %}
 {% block body_id %}login{% endblock %}
 {% block layout %}
-   <div id="login-form">
-        <form action="" class="box" method="post">
-            <h1>Pooled. <em>Register</em></h1>
-            <p><a href="{% url django.contrib.auth.views.login %}">Go to login form</a></p>
-            {{registration_form}}
-            <input type="submit" value="register" />
+    <div id="signup-form" class="clearfix">
+        <form action="{% url pooled.views.user_register %}" class="box clearfix" method="post">
+            <h1>Pooled. <em>Signup</em></h1>
+            {% if registration_form.errors %}
+                {{registration_form.errors}}
+            {% endif %}
+            <fieldset>
+                <label for="id_username">Set Your Username</label>
+                <input type="text" class="text" id="id_username" name="username" value="Username" /><br /><br />
+            </fieldset>
+            <fieldset>
+                <label for="id_email">Email Address</label>
+                <input type="text" class="text" name="email" id="id_email" value="Email Address" /><br /><br />
+            </fieldset>
+            <fieldset>
+                <label for="id_password1">Set Your Password</label>
+                <input type="password" class="text" id="id_password1" name="password1" value="11111111" />
+                <label for="id_password2">Confirm Your Password</label>
+                <input type="password" class="text" id="id_password2" name="password2" value="22222222" />
+            </fieldset>
+            <fieldset>
+                <label for="id_favourite_team">Favourite Team</label>
+                {{ registration_form.favourite_team }}
+            </fieldset>
+            <input type="submit" name="submit" class="submit" Value="Signup" />
             <input type="hidden" name="next" value="{{ next }}" />
-            <div style="clear:both">
-            </div>
+            <a href="{% url django.contrib.auth.views.login %}" class="login-link">Login</a>
         </form>
     </div>
 {% endblock layout %}

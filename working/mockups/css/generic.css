@@ -173,7 +173,7 @@ FORM .text:focus{
 	border:none;
 	}
 
-.error {	
+.error, .errorlist {	
 	background:#a73131;
 	color:#FFF;
 	padding:4px 6px;
