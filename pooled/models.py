@@ -146,6 +146,9 @@ class CupPick(models.Model):
     pool = models.ForeignKey(Pool)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    
+    def __unicode__(self):
+        return "%s picked %s to win" % (self.user.username, self.team.slug.upper())
 
 class PickRound(models.Model):
     current_round = models.ForeignKey(Round)
