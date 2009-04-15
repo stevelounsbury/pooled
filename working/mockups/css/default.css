@@ -336,7 +336,14 @@ BODY {background:url('../images/body-bkg-team.jpg') top center no-repeat;	}
   .east-rw {top:20px; right:125px;}
   .east-d1 {top:30px; right:80px;}
   .east-d2 {top:100px; right:80px;}
-  .east-g {top:65px; right:30px;}  
+  .east-g {top:65px; right:30px;}
+  
+  
+#autocomplete { position: absolute; display: none; line-height: 1.2em; background-color: white; border: 1px solid #888; margin: 0px; padding: 0px; }
+#autocomplete ul { margin: 4px; padding: 0; font-size: 0.9em; }
+#autocomplete li { cursor: pointer; margin: 4px 0; padding: 0; list-style-type: none; }
+#autocomplete li.hover { background-color: #ffb; }
+
   
   
   

@@ -1,5 +1,6 @@
 {% extends "pooled/base.html" %}
 {% load pooled_common %}
+{% block body_class %}{{ user.get_profile.favourite_team.slug|lower }}{% endblock %}
 {% block layout %}
     <div id="header">
         <p><a href="{% url pooled.views.index %}">Leaderboard</a> | <a href="{% url pooled.views.pick_players %}">Picks</a></p>
@@ -23,41 +24,8 @@
     {% endif %}
     <div id="content" class="box">
         {% block content %}
-        <p class="util-links"><a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a></p>
-        <h2>Leaderboard</h2>
-        <table summary="Leaderboard, and Score Breakdown" id="leaderboard">
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th class="owner-col">Team</th>
-                    <th class="stat">GL</th>
-                    <th class="stat">AS</th>
-                    <th class="stat">WN</th>
-                    <th class="stat">SO</th>
-                    <th class="stat">TOT</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="owner-col"><a href="#">Shawn McCann</a></td>
-                    <td class="offense-col">64</td>
-                    <td class="offense-col">42</td>
-                    <td class="defense-col">5</td>
-                    <td class="defense-col">3</td>
-                    <td class="total-col">66</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="owner-col"><a href="#">Steve Lounsbury</a></td>
-                    <td class="offense-col">64</td>
-                    <td class="offense-col">42</td>
-                    <td class="defense-col">5</td>
-                    <td class="defense-col">3</td>
-                    <td class="total-col">66</td>
-                </tr>
-            </tbody>
-        </table>
+        <h2>Leaderboard <em>Coming soon</em></h2>
+        <p><a href="{% url pooled.views.pick_players %}">Go make your picks &raquo;</a></p>
         {% endblock content %}
     </div>
 {% endblock layout %}

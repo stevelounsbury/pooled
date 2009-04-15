@@ -2,7 +2,9 @@
             {% if cup_pick %}
             <img src="/pooled_media/images/teams/lrg/{{ cup_pick.team.slug|lower }}.gif" alt=""/>
             {% else %}
-            <p><a href="{% url pooled.views.pick_players %}">Go pick your cup winner</a></p>
+            <a href="{% url pooled.views.pick_players %}">
+            <img src="/pooled_media/images/teams/lrg/cup.gif" alt=""/>
+            </a>
             {% endif %}
             <h3>{{ user.username }}</h3>
             <ul>

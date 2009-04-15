@@ -3,4 +3,34 @@
 -- Warning, will destroy all existing team data.
 --
 TRUNCATE TABLE `pooled_team`;
-INSERT INTO `pooled_team` VALUES (1,'Pit','','pit','E',1),(2,'Was','','was','E',1),(3,'NJ','','nj','E',1),(4,'Det','','det','W',1),(5,'Atl','','atl','E',1),(6,'Cgy','','cgy','W',1),(7,'SJ','','sj','W',1),(8,'Anh','','anh','W',1),(9,'Bos','','bos','E',1),(10,'TB','','tb','E',1),(11,'Phi','','phi','E',1),(12,'Van','','van','W',1),(13,'Cls','','cls','W',1),(14,'Ott','','ott','E',1),(15,'Dal','','dal','W',1),(16,'Car','','car','E',1),(17,'Chi','','chi','W',1),(18,'Pho','','pho','W',1),(19,'Buf','','buf','E',1),(20,'StL','','stl','W',1),(21,'LA','','la','W',1),(22,'Edm','','edm','W',1),(23,'Min','','min','W',1),(24,'Tor','','tor','E',1),(25,'Mon','','mon','E',1),(26,'Col','','col','W',1),(27,'Nsh','','nsh','W',1),(28,'NYR','','nyr','E',1),(29,'NYI','','nyi','E',1),(30,'Fla','','fla','E',1);
+INSERT INTO `pooled_team` VALUES 
+(1,'Pittsburgh Penguins','','pit','E',1),
+(2,'Washington Capitals','','was','E',1),
+(3,'New Jersey Devils','','nj','E',1),
+(4,'Detroit Red Wings','','det','W',1),
+(5,'Atlanta Thrashers','','atl','E',0),
+(6,'Calgary Flames','','cgy','W',1),
+(7,'San Jose Sharks','','sj','W',1),
+(8,'Anaheim Ducks','','anh','W',1),
+(9,'Boston Bruins','','bos','E',1),
+(10,'Tampa Bay Lightning','','tb','E',0),
+(11,'Philadelphia Flyers','','phi','E',1),
+(12,'Vancouver Canucks','','van','W',1),
+(13,'Columbus Blue Jackets','','cls','W',1),
+(14,'Ottawa Senators','','ott','E',0),
+(15,'Dallas Stars','','dal','W',0),
+(16,'Carolina Hurricanes','','car','E',1),
+(17,'Chicago Blackhawks','','chi','W',1),
+(18,'Pheonix Coyotes','','pho','W',0),
+(19,'Buffalo Sabres','','buf','E',0),
+(20,'St. Louis Blues','','stl','W',1),
+(21,'Los Angeles Kings','','la','W',0),
+(22,'Edmonton Oilers','','edm','W',0),
+(23,'Minnesota Wild','','min','W',0),
+(24,'Toronto Maple Leafs Suck','','tor','E',0),
+(25,'Montreal Canadiens','','mon','E',1),
+(26,'Colorado Avalanche','','col','W',0),
+(27,'Nashville Predators','','nsh','W',0),
+(28,'New York Rangers','','nyr','E',1),
+(29,'New York Islanders','','nyi','E',0),
+(30,'Florida Panthers','','fla','E',0);

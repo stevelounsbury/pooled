@@ -118,7 +118,7 @@ def autocomplete(request, type="teams"):
     try:
         if type == 'teams':
             pick_type = PickType.objects.filter(pk=request.GET['pick_type'])
-            queryset = Team.objects.filter(conference=pick_type[0].conference)
+            queryset = Team.objects.filter(conference=pick_type[0].conference, active=True)
         elif type == 'players':
             pick_type = PickType.objects.get(pk=request.GET['pick_type'])
             team = Team.objects.get(pk=request.GET['team_id'])

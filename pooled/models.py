@@ -22,7 +22,7 @@ class Team(models.Model):
     active = models.BooleanField(default=True)
     
     def __unicode__(self):
-        return self.name.upper()
+        return self.name
 
 class Player(models.Model):
     team = models.ForeignKey(Team)
@@ -157,6 +157,9 @@ class PickRound(models.Model):
 class PooledProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     favourite_team = models.ForeignKey(Team, blank=True)
+    
+    def __unicode__(self):
+        return "%s's profile" % self.user.username
 
 class PointsScheme(models.Model):
     pool = models.ForeignKey(Pool)
