@@ -8,7 +8,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-		
+    
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/generic.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/default.css" type="text/css" media="all" />
 
 	
@@ -23,23 +25,23 @@
 
 	
 </head>
-<body id="homepage">
+<body id="homepage" class="cgy">
 
 <div id="wrapper">
 	<div id="header">
-		<p>Logged in as Shawn McCann | <a href="#">Logout</a></p>
+		<p><a href="#">Leaderboard</a>  |   <a href="#">My Team</a>   |   <a href="#">Player Stats</a></p>
 		<h1>Pooled.</h1>
-		<h2>76design's Second Annual Playoff Pool</h2>	
+		<h2>76design's 2009 Playoff Pool</h2>	
 	</div>
 	
 	<div id="sidebar">
 		<div id="profile" class="box">
-			<img src="images/teams/NYR.gif" alt="The Maple Leafs Will Win the Stanley Cup"/>
+			<img src="images/teams/lrg/CUP.gif" alt="The Maple Leafs Will Win the Stanley Cup"/>
 			<h3>Shawn McCann</h3>
 			<ul>
-				<li>current rank : <em>2/10</em></li>
-				<li>points behind leader : <em>44</em></li>
-				<li><a href="#">Edit My Team</a></li>
+				<li>Current Rank : <em>2/10</em></li>
+				<li>Points Behind Leader : <em>44</em></li>
+				<li><a href="#">Logout</a></li>
 			</ul>			
 			<div style="clear:both"></div>
 		</div>
@@ -103,6 +105,7 @@
 					</tr>
 				</tbody>
 			</table>
+            <a href="#" class="view-all">View All</a>
 		</div>
 		<div id="popular-picks" class="box">
 			<table summary="The Most Popular Players Chosen In this Pool">
@@ -164,6 +167,7 @@
 					</tr>
 				</tbody>
 			</table>
+            <a href="#" class="view-all">View All</a>
 		</div>
 	</div> <!-- END SIDEBAR -->
 	
@@ -175,10 +179,12 @@
 			<thead>
 				<tr>
 					<th>&nbsp;</th>
-					<th class="owner-col">Team</th>
-					<th class="stat">GL</th>
-					<th class="stat">AS</th>
-					<th class="stat">WN</th>
+                    <th class="cup-winner">&nbsp;</th>
+                    <th class="owner-col">Team</th>					
+                    <th class="stat">G</th>
+					<th class="stat">A</th>
+                    <th class="stat">GWG</th>
+					<th class="stat">W</th>
 					<th class="stat">SO</th>
 					<th class="stat">TOT</th>
 				</tr>
@@ -186,81 +192,99 @@
 			<tbody>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Shawn McCann</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/atl.gif" /></td>
+                    <td class="owner-col"><a href="#">Shawn McCann <em>+12</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Keelan Green</a></td>
+                    <td class="cup-winner"><img src="images/teams/sml/cbj.gif" /></td>
+					<td class="owner-col"><a href="#">Keelan Green <em>+11</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Jeff Young</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/bos.gif" /></td>
+                    <td class="owner-col"><a href="#">Jeff Young <em>+16</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Aimee Deziel</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/tor.gif" /></td>
+                    <td class="owner-col"><a href="#">Aimee Deziel <em>+4</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">John Sobol</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/ott.gif" /></td>
+                    <td class="owner-col"><a href="#">John Sobol <em>+12</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Stephen Heckbert</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/phi.gif" /></td>
+                    <td class="owner-col"><a href="#">Stephen Heckbert <em>+2</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Brett Tackaberry</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/pit.gif" /></td>
+                    <td class="owner-col"><a href="#">Brett Tackaberry <em>+8</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Dom Coballe</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/det.gif" /></td>
+                    <td class="owner-col"><a href="#">Dom Coballe <em>+8</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="owner-col"><a href="#">Steve Lounsbury</a></td>
+					<td class="cup-winner"><img src="images/teams/sml/cgy.gif" /></td>
+                    <td class="owner-col"><a href="#">Steve Lounsbury <em>+4</em></a></td>
 					<td class="offense-col">64</td>
 					<td class="offense-col">42</td>
+                    <td class="offense-col">42</td>
 					<td class="defense-col">5</td>
 					<td class="defense-col">3</td>
 					<td class="total-col">66</td>

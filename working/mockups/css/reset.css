@@ -1,0 +1,76 @@
+/**************************************************
+
+	ORIGINALLY BY ERIC MEYER
+	MODIFIED BY 76DESIGN
+	
+	set everything to zero
+	*/
+	
+	
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, 
+code,del, dfn, em, font, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,dl, dt, dd, ol, ul, li,fieldset, form, 
+label, legend,table, caption, tbody, tfoot, thead, tr, th, td {margin: 0;padding: 0;border: 0;outline: 0;font-weight: inherit;font-style: inherit;	font-size: 100%;font-family: inherit;vertical-align: baseline;}
+:focus {	outline: 0;}
+table {border-collapse: separate;border-spacing: 0;}
+caption, th, td {text-align: left;font-weight: normal;}
+blockquote:before, blockquote:after,q:before, q:after {content: "";}
+blockquote, q {quotes: "" "";}
+
+/***************************************************
+	CLEARFIX
+	 */
+	 
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+	}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+
+/**************************************************
+
+	TAKEN FROM BLUEPRINT CSS FRAMEWORK
+	MODIFIED BY 76DESIGN
+	
+	add in basic styling so nothing looks out of place when complete.
+	*/
+	
+H1, H2, H3, H4, H5, H6 {font-weight:normal;line-height:1.25em}
+H1 {font-size:26px;margin-bottom:0.5em;}
+H2 {font-size:22px;margin-bottom:0.75em;}
+H3 {font-size:18px;margin-bottom:1em;}
+H4 {font-size:16px;margin-bottom:1.25em;}
+H5 {font-size:14px;font-weight:normal;margin-bottom:.75em;}
+H6 {font-size:12px;font-weight:normal; line-height:.25em;}
+P{margin:0 0 1.5em;}
+P IMG.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+BLOCKQUOTE {margin:1.5em;color:#666;font-style:italic;}
+STRONG {font-weight:bold;}
+EM, DFN {font-style:italic;}
+DFN {font-weight:bold;}
+SUP, SUB {line-height:0;}
+ABBR, ACRONYM {border-bottom:1px dotted #666;}
+ADDRES {margin:0 0 1.5em;font-style:normal;}
+DEL {color:#666;}
+PRE, CODE {margin:1.5em 0;white-space:pre;}
+TT{display:block;margin:1.5em 0;line-height:1.5;}
+PRE, CODE, TT {line-height:1.5;}
+LI UL, LI OL {margin:0 1.5em;}
+UL, OL {margin:0 1.5em 1.5em 1.5em;}
+UL {list-style-type:disc;}
+OL {list-style-type:decimal;}
+DL {margin:0 0 1.5em 0;}
+DL DT {font-weight:bold;}
+DD {margin-left:1.5em;}
+A {text-decoration:underline;}
+A IMG {border:0;}
+

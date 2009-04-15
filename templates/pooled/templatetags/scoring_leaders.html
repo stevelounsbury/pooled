@@ -10,7 +10,7 @@
 					<tr>
 						<td class="value-col">{{ score.pts }}pts</td>
 						<td><a href="http://www.sportsnet.ca/hockey/nhl/players/{{ score.player.sportsnet }}/" target="_blank">{{ score.player.name }}</a></td>
-						<td class="team-col">{{ score.player.team.name }}</td>
+						<td class="team-col">{{ score.player.team.slug|upper }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>

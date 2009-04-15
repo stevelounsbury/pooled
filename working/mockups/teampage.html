@@ -9,6 +9,8 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 		
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/generic.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/default.css" type="text/css" media="all" />
 
 	
@@ -23,23 +25,23 @@
 
 	
 </head>
-<body class="team">
+<body id="team" class="cgy" >
 
 <div id="wrapper">
 	<div id="header">
-		<p>Logged in as Shawn McCann | <a href="#">Logout</a></p>
+		<p><a href="#">Leaderboard</a>  |   <a href="#">My Team</a>   |   <a href="#">Player Stats</a></p>
 		<h1>Pooled.</h1>
 		<h2>76design's Second Annual Playoff Pool</h2>	
 	</div>
 	
 	<div id="sidebar">
 		<div id="profile" class="box">
-			<img src="images/teams/NYR.gif" alt="The Maple Leafs Will Win the Stanley Cup"/>
+			<a href="#"><img src="images/teams/lrg/NYR.gif" alt="The Maple Leafs Will Win the Stanley Cup"/></a>
 			<h3>Shawn McCann</h3>
 			<ul>
 				<li>current rank : <em>2/10</em></li>
 				<li>points behind leader : <em>44</em></li>
-				<li><a href="#">Back To Standings</a></li>
+				<li><a href="#">Logout</a></li>
 			</ul>			
 			<div style="clear:both"></div>
 		</div>
@@ -103,6 +105,7 @@
 					</tr>
 				</tbody>
 			</table>
+            <a href="#" class="view-all">View All</a>
 		</div>
 		<div id="popular-picks" class="box">
 			<table summary="The Most Popular Players Chosen In this Pool">
@@ -164,13 +167,89 @@
 					</tr>
 				</tbody>
 			</table>
+            <a href="#" class="view-all">View All</a>
 		</div>
 	</div> <!-- END SIDEBAR -->
 	
 	<div id="content" class="box">
-		<h2 class="cup-winners">The New York Rangers Will Win The Stanley Cup <a href="#">(edit)</a></h2><p class="util-links"><a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a></p>
-		<h2>Shawn McCann <a href="#">(edit)</a></h2>
-		
+	<form method="post" id="cup-winner-form" action="/picks/cup/">
+            <h2 class="cup-winners"><select id="cup-pick-team" name="team">
+            <option selected="selected" value="">---------</option>
+            <option value="1">Pittsburgh Penguins</option>
+            <option value="2">WAS</option>
+            <option value="3">NJ</option>
+            <option value="4">DET</option>
+            <option value="5">ATL</option>
+            <option value="6">CGY</option>
+            <option value="7">SJ</option>
+            <option value="8">ANH</option>
+            <option value="9">BOS</option>
+            <option value="10">TB</option>
+            <option value="11">PHI</option>
+            <option value="12">VAN</option>
+            <option value="13">CLS</option>
+            <option value="14">OTT</option>
+            <option value="15">DAL</option>
+            <option value="16">CAR</option>
+            <option value="17">CHI</option>
+            <option value="18">PHO</option>
+            <option value="19">BUF</option>
+            <option value="20">STL</option>
+            <option value="21">LA</option>
+            <option value="22">EDM</option>
+            <option value="23">MIN</option>
+            <option value="24">TOR</option>
+            <option value="25">MON</option>
+            <option value="26">COL</option>
+            <option value="27">NSH</option>
+            <option value="28">NYR</option>
+            <option value="29">NYI</option>
+            <option value="30">FLA</option>
+            </select> will win the Stanley Cup.
+            <a href="#">(edit)</a></h2>
+        </form>
+        
+        <p class="util-links"><a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a></p>
+		<h2>Shawn McCann</h2>
+		<form method="post" id="pick-form" action="" class="clearfix" >
+         <ul class="clearfix">
+                <li><label for="id_position">Position:</label> <select id="id_position" name="position">
+                    <option selected="selected" value="">---------</option>
+                    <option value="1">East Right Wing</option>
+                    <option value="2">East Center</option>
+                    <option value="3">East Left Wing</option>
+                    <option value="4">East Defense 1</option>
+                    <option value="5">East Defense 2</option>
+                    <option value="6">East Goalie</option>
+                    <option value="7">West Right Wing</option>
+                    <option value="8">West Center</option>
+                    <option value="9">West Left Wing</option>
+                    <option value="10">West Defense 1</option>
+                    <option value="11">West Defense 2</option>
+                    <option value="12">West Goalie</option>
+                </select>
+            </li>
+            <li><label for="id_team">Team:</label> <input type="text" maxlength="30" name="team" id="id_team" disabled="true"/></li>
+            <li><label for="id_player">Player:</label> <input type="text" maxlength="30" name="player" id="id_player" disabled="true"/><input type="hidden" id="id_team_id" name="team_id"/><input type="hidden" id="id_player_id" name="player_id"/></li>
+            <li><input type="submit" value="Submit"  class="submit" /></li>
+          </ul>
+          <div id="rink-map">
+                <a href="#" class="east-forward-1">Alex Ovechkin</a>
+                <a href="#" class="east-forward-2">Sidney Crosby</a>
+                <a href="#" class="east-forward-3">Evegeni Malkin</a>
+                <a href="#" class="east-defence-1">Mike Green</a>
+                <a href="#" class="east-defence-2">Andrei Markov</a>
+                <a href="#" class="east-goalie">Martin Biron</a>
+                
+                <a href="#" class="west west-forward-1">Joe Thornton</a>
+                <a href="#" class="west west-forward-2">Devin Setoguchi</a>
+                <a href="#" class="west west-forward-3">Patrick Marleau</a>
+                <a href="#" class="west west-defence-1">Dan Boyle</a>
+                <a href="#" class="west west-defence-2">Rob Blake</a>
+                <a href="#" class="west west-goalie">Evgeni Nabokov</a>
+                
+          </div>
+        </form>
 		<h3>Eastern Conference</h3>
 		
 		<table summary="Eastern Conference Roster for Shawn McCann" id="east-team-listing">
@@ -266,34 +345,7 @@
 					<td>66</td>
 					<td><a href="#">edit</a></td>
 				</tr>
-				<tr class="edit-player">
-					<td colspan="6">
-						<form action="#">
-							<select class="text">
-								<option>Detroit Redwings</option>
-								<option>Nashville Predators</option>
-								<option>Anaheim Ducks</option>
-								<option>Dallas Stars</option>
-								<option>Colorado Avalanche</option>
-								<option>Minnesota Wild</option>
-								<option>Calgary Flames</option>
-								<option>San Jose Sharks</option>
-							</select>
-	
-							<select class="text">
-								<option>Left Winger option 1</option>
-								<option>Left Winger option 2</option>
-								<option>Left Winger option 3</option>
-								<option>Left Winger option 4</option>
-								<option>Left Winger option 5</option>
-								<option>Left Winger option 6</option>
-								<option>Left Winger option 7</option>
-								<option>Left Winger option 8</option>
-							</select>
-							<button type="submit" name="submit" class="submit">Submit</button>							
-						</form>
-					</td>
-				</tr>
+
 				<tr>
 					<td>C</td>
 					<td class="player-col"><a href="#">Ryan Getzlaf</a> <em>(ANA)</em></td>

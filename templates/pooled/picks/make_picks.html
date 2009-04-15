@@ -4,7 +4,7 @@
     {% if current_pick_round %}
         
         {% if current_pick_round.can_pick_cup %}
-        <form action="{% url pooled.views.pick_cup %}" method="post">
+        <form action="{% url pooled.views.pick_cup %}" method="post" id="cup-winner-form">
             <h2 class="cup-winners">{{ cup_pick_form.team }} will win the Stanley Cup.
             <input type="submit" name="submit" value="Submit" /></h2>
         </form>
@@ -13,9 +13,26 @@
             <a href="#" class="selected">playoff totals</a> | <a href="#">totals by round</a>
         </p>
 		<h2>{{ user.username }}</h2>
-        <form action="" method="post">
-            <p>{{ pick_form.as_ul }}</p>
-            <input type="submit" value="Submit" />
+        <form action="" method="post" id="pick-form" class="clearfix">
+            <ul class="clearfix">
+            {{ pick_form.as_ul }}
+            <li><input type="submit" value="Submit" class="submit" /></li>
+            </ul>
+            <div id="rink-map">
+                {% for pick in eastern_players %}
+                    <a href="#" class="east-{{pick.player.position|lower}}" title="{{pick.player.name}} [East {{pick.player.position|upper}}]">{{pick.player.name}}</a>
+                {% endfor %}
+                {% for pick in eastern_goalies %}
+                    <a href="#" class="east-g" title="{{pick.player.name}} [East G]">{{pick.player.name}}</a>
+                {% endfor %}
+                
+                {% for pick in western_players %}
+                    <a href="#" class="west west-{{pick.player.position|lower}}" title="{{pick.player.name}} [West {{pick.player.position|upper}}]">{{pick.player.name}}</a>
+                {% endfor %}
+                {% for pick in western_goalies %}
+                    <a href="#" class="west west-g" title="{{pick.player.name}} [West G]">{{pick.player.name}}</a>
+                {% endfor %}
+            </div>
         </form>
         <script>
         $("#id_position").change( function() { 
@@ -64,7 +81,7 @@
                 {% for pick in eastern_players %}
                 <tr>
                     <td>{{ pick.player.position }}</td>
-                    <td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</em></td>
+                    <td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.slug|upper }}</em></td>
                     {% for stat in pick.player.playerstat_set.all %}
                         {% if stat.current %}
                             <td>{{ stat.g }}</td>
@@ -84,7 +101,7 @@
                 {% for pick in eastern_goalies %}
                 <tr>
 					<td>G</td>
-					<td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</td>
+					<td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.slug|upper }}</td>
                     {% for stat in pick.player.goaliestat_set.all %}
                         {% if stat.current %}
                             <td>{{ stat.w }}</td>
@@ -132,7 +149,7 @@
                 {% for pick in western_goalies %}
                 <tr>
 					<td>G</td>
-					<td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</td>
+					<td class="player-col">{{ pick.player.name }} <em>{{ pick.player.team.name|upper }}</em></td>
                     {% for stat in pick.player.goaliestat_set.all %}
                         {% if stat.current %}
                             <td>{{ stat.w }}</td>

@@ -8,7 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-		
+	<script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/generic.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/default.css" type="text/css" media="all" />
 
 	
@@ -23,31 +26,79 @@
 
 	
 </head>
-<body class="login">
+<body id="login">
 
 <div id="wrapper">
-
-
 	<div id="login-form">
-		<form action="asdf" class="box">
+		<form action="asdf" class="box clearfix">
 			<h1>Pooled. <em>Login</em></h1>
-			
-
-				<input type="text" class="text" name="login" value="Username" />		
-				<input type="password" class="text" name="password" value="Password" />						
-				<label for="remember_me" class="checkbox">Remember me on this computer</label>
-				<input  type="checkbox" name="remember_login" id="remember_login" value="1"  checked />
-			
-				
-	
-
-				<button type="submit" name="submit" class="submit">Login</button>
-				<div style="clear:both">
-				</div>
+			<input type="text" class="text" name="login" value="Username" />		
+			<input type="password" class="text" name="password" value="Password" />						
+			<label for="remember_me" class="checkbox">Remember me on this computer</label>
+			<input  type="checkbox" name="remember_login" id="remember_login" value="1"  checked />
+			<a href="#" class="signup">Sign Up For A New Account</a>
+			<input type="submit" name="submit" class="submit" Value="Login" />
 		</form>
 	</div>
-	
-	
+	<div id="signup-form" style="display:none;">
+		<form action="asdf" class="box clearfix">
+			<h1>Pooled. <em>Signup</em></h1>
+			<p class="error">This email already has an account</p>
+			<fieldset>
+				<label for="username">Set Your Username</label>
+				<input type="text" class="text" name="username" value="Username" /><br /><br />	
+			</fieldset>
+			<fieldset>
+				<label for="username">Email Address</label>
+				<input type="text" class="text" name="username" value="Email Address" /><br /><br />	
+			</fieldset>
+			<fieldset>
+				<label for="password">Set Your Password</label>
+				<input type="password" class="text" name="password" value="Password" />								
+				<label for="confirm_password">Confirm Your Password</label>
+				<input type="password" class="text" name="confirm_password" value="Confirm Password" />								
+			</fieldset>
+			<fieldset>
+				<label for="id_favourite_team">Favourite Team</label>
+                   <select id="id_favourite_team" name="favourite_team">
+                        <option selected="selected" value="">---------</option>
+                        <option value="1">PIT</option>
+                        <option value="2">WAS</option>
+                        <option value="3">NJ</option>
+                        <option value="4">DET</option>
+                        <option value="5">ATL</option>
+                        <option value="6">CGY</option>
+                        <option value="7">SJ</option>
+                        <option value="8">ANH</option>
+                        <option value="9">BOS</option>
+                        <option value="10">TB</option>
+                        <option value="11">PHI</option>
+                        <option value="12">VAN</option>
+                        <option value="13">CLS</option>
+                        <option value="14">OTT</option>
+                        <option value="15">DAL</option>
+                        <option value="16">CAR</option>
+                        <option value="17">CHI</option>
+                        <option value="18">PHO</option>
+                        <option value="19">BUF</option>
+                        <option value="20">STL</option>
+                        <option value="21">LA</option>
+                        <option value="22">EDM</option>
+                        <option value="23">MIN</option>
+                        <option value="24">TOR</option>
+                        <option value="25">MON</option>
+                        <option value="26">COL</option>
+                        <option value="27">NSH</option>
+                        <option value="28">NYR</option>
+                        <option value="29">NYI</option>
+                        <option value="30">FLA</option>
+                    </select>														
+			</fieldset>
+			
+			<input type="submit" name="submit" class="submit" Value="Signup" />
+			<a href="#" class="login-link">Login</a>
+		</form>
+	</div>
 </div>	
 </body>
 </html>

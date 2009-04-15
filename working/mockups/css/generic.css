@@ -1,0 +1,183 @@
+/***************************************************
+	TEXT
+	
+	*/
+	 
+A{color:#a73131;}	
+A:hover{color:#e5e5e5;}
+
+#content A{color:#525252;}	
+#content A:hover{color:#e5e5e5;}
+	
+H1 {color:#000;}
+H2 {color:#333;}
+H3 {color:#666;}
+H4 {color:#999;}
+H5 {color:#bbb;}
+H6 {color:#eee;}
+
+
+/***************************************************
+    
+	TEAM BKGS
+	 */
+
+BODY.anh {background:url('../images/bkgs/ANH.jpg') top center no-repeat;}
+BODY.atl {background:url('../images/bkgs/ATL.jpg') top center no-repeat;}
+BODY.bos {background:url('../images/bkgs/BOS.jpg') top center no-repeat;}
+BODY.buf  {background:url('../images/bkgs/BUF.jpg') top center no-repeat;}
+BODY.car {background:url('../images/bkgs/CAR.jpg') top center no-repeat;}
+BODY.cbj {background:url('../images/bkgs/CBJ.jpg') top center no-repeat;}
+BODY.cgy {background:url('../images/bkgs/CGY.jpg') top center no-repeat;}
+BODY.chi {background:url('../images/bkgs/CHI.jpg') top center no-repeat;}
+BODY.col {background:url('../images/bkgs/COL.jpg') top center no-repeat;}
+BODY.dal {background:url('../images/bkgs/DAL.jpg') top center no-repeat;}
+BODY.det {background:url('../images/bkgs/DET.jpg') top center no-repeat;}
+BODY.edm {background:url('../images/bkgs/EDM.jpg') top center no-repeat;}
+BODY.fla {background:url('../images/bkgs/FLA.jpg') top center no-repeat;}
+BODY.la {background:url('../images/bkgs/LA.jpg') top center no-repeat;}
+BODY.min {background:url('../images/bkgs/MIN.jpg') top center no-repeat;}
+BODY.mon {background:url('../images/bkgs/MTL.jpg') top center no-repeat;}
+BODY.nj {background:url('../images/bkgs/NJ.jpg') top center no-repeat;}
+BODY.nsh {background:url('../images/bkgs/NSH.jpg') top center no-repeat;}
+BODY.nyi {background:url('../images/bkgs/NYI.jpg') top center no-repeat;}
+BODY.nyr {background:url('../images/bkgs/NYR.jpg') top center no-repeat;}
+BODY.ott {background:url('../images/bkgs/OTT.jpg') top center no-repeat;}
+BODY.phi {background:url('../images/bkgs/PHI.jpg') top center no-repeat;}
+BODY.phx {background:url('../images/bkgs/PHX.jpg') top center no-repeat;}
+BODY.pit {background:url('../images/bkgs/PIT.jpg') top center no-repeat;}
+BODY.sj {background:url('../images/bkgs/SJ.jpg') top center no-repeat;}
+BODY.stl {background:url('../images/bkgs/STL.jpg') top center no-repeat;}
+BODY.tb {background:url('../images/bkgs/TB.jpg') top center no-repeat;}
+BODY.tor {background:url('../images/bkgs/TOR.jpg') top center no-repeat;}
+BODY.van {background:url('../images/bkgs/VAN.jpg') top center no-repeat;}
+BODY.wsh {background:url('../images/bkgs/WAS.jpg') top center no-repeat;}
+
+/***************************************************
+	TABLES
+	 */
+
+TABLE{
+	width: 100%;
+	padding:0;
+	border-collapse: collapse;
+	}	
+
+TABLE THEAD TH H2{		
+	border-bottom: 1px solid #000;
+	line-height:120%;
+	padding:0 0 15px 0;
+	margin:0 0 10px 0;
+	}	
+
+TABLE TR TD {
+	text-align:center;
+	margin:0;
+	padding:3px 5px;
+	border-bottom: 1px solid #c8c8c8;
+	color:#525252;
+	}
+	
+#content TABLE THEAD TH  {
+	text-align:center;
+	border-bottom: 3px solid #000;
+	}
+    
+ /***************************************************
+	TABLE COLUMNS
+	 */	
+
+.cup-winner {padding:3px 0px;}
+td.cup-winner {vertical-align:middle;}
+.offense-col {background:#f2f2f2; width:40px;}
+.defense-col {background:#e5e5e5;width:40px;}
+.total-col {background:#a73131; color:#FFF; font-weight:bold;}
+.team-col{ color:#a4a4a4; font-size:80%;}
+.value-col {color:#a73131;font-weight:bold;}
+.goalie-header TH{padding:20px 0 0 0; border-bottom:solid 1px #000;text-align:center;}
+#content .owner-col, 
+#content .player-col{text-align:left;}
+
+.player-col EM {
+	font-size:80%;
+	color:#a4a4a4;    
+	}
+    
+/***************************************************
+	FORMS (GENERIC)
+	 */ 
+
+LABEL {
+	color:#4b626d;
+	font-weight:bold;
+	cursor:pointer;
+	float:left;
+    display:block;
+    }
+
+	
+INPUT:focus {
+	border: 2px solid #a73131;
+	padding:0;
+	}
+	
+INPUT,
+TEXTAREA,
+SELECT {
+	border: 1px solid #a4a4a4;
+	color: #a4a4a4;
+	font-size: 100%;
+	margin:5px 0;
+	font-size:100%;
+	font-family:"Trebuchet";
+	}
+    
+FORM FIELDSET {
+	border:none;
+	padding:0;
+    }
+    
+FORM .text{
+	padding:8px;
+	width:204px;
+	}
+    
+FORM .text:focus{
+	padding:7px; /* to accomodate 2px border */
+	color:#a73131;
+	}	
+    
+.text {width:100%;}	
+
+.submit:focus {
+    border:none;
+    padding:7px;
+    }
+.submit {
+	margin:15px 0 20px 0;
+	padding:7px;
+	border:none;
+	width:80px;
+	background:#a73131;
+	border:none;
+	color:#FFF;
+	font-family:georgia;
+	}
+    
+ .submit:hover {
+    background:#e5e5e5;
+    }
+	
+#remember_login {
+	margin:4px 0 0 5px;
+	border:none;
+	}
+
+.error {	
+	background:#a73131;
+	color:#FFF;
+	padding:4px 6px;
+    
+	}
+    
+.clear {clear:both;}
