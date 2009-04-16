@@ -2,8 +2,8 @@
 {% block body_id %}team{% endblock %}
 {% block body_class %}{{ user.get_profile.favourite_team.slug|lower }}{% endblock %}
 {% block content %}
-    {% if current_pick_round %}
         
+        {% if picks_open %}
         {% if current_pick_round.can_pick_cup %}
         <form action="{% url pooled.views.pick_cup %}" method="post" id="cup-winner-form">
             <h2 class="cup-winners">The {{ cup_pick_form.team }} will win the Stanley Cup.</h2>
@@ -16,10 +16,14 @@
             </script>
         </form>
         {% endif %}
+        {% else %}
+            <h2 class="cup-winners">The <strong>{{ cup_pick.team }}</strong> will win the Stanley Cup.</h2>
+        {% endif %}
         <p class="util-links">
             <a href="#" class="selected">round 1</a> | round 2 | round 3 | round 4</a>
         </p>
-        <h2>{{ user.username }}</h2>
+        <h2>{{ the_user.username }}</h2>
+        {% if picks_open %}
         <form action="" method="post" id="pick-form" class="clearfix">
             <ul class="clearfix">
             {{ pick_form.as_ul }}
@@ -79,6 +83,7 @@
         <div id="autocomplete">
         </div>
         </form>
+        {% endif %}
 
 		
 		<h3>Eastern Conference</h3>
@@ -177,6 +182,4 @@
                 {% endfor %}
 			</tbody>
 		</table>
-		
-    {% endif %}
 {% endblock content %}

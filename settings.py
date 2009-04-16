@@ -1,4 +1,6 @@
 # Django settings for pooled project.
+import os
+rel = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -69,10 +71,10 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/steve/django/pool/templates',
+    rel('templates'),
 )
 
-STATIC_DOC_ROOT = '/home/steve/django/pool/working/mockups'
+STATIC_DOC_ROOT = rel('working/mockups')
 
 INSTALLED_APPS = (
     'django.contrib.auth',

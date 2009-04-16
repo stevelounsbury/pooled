@@ -1,9 +1,40 @@
 {% extends "pooled/layout_homepage.html" %}
 
 {% block content %}
-{{ block.super }}
-<h1>{{ object_list.count }}</h1>
-{% for player in object_list %}
-    {{ player.name }}<br />
-{% endfor %}
+    <h2>Leaderboard</h2>
+    <table summary="Leaderboard, and Score Breakdown" id="leaderboard">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th class="cup-winner">&nbsp;</th>
+            <th class="owner-col">Team</th>					
+            <th class="stat">G</th>
+            <th class="stat">A</th>
+
+            <th class="stat">GWG</th>
+            <th class="stat">W</th>
+            <th class="stat">SO</th>
+            <th class="stat">TOT</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for u in users %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            {% for pick in u.cuppick_set.all %}
+            <td class="cup-winner"><img src="/pooled_media/images/teams/sml/{{ pick.team.slug|lower }}.gif" /></td>
+            {% endfor %}
+            <td class="owner-col"><a href="/picks/view/{{u.username}}">{{ u.username }} <em>+/-</em></a></td>
+            <td class="offense-col">-</td>
+            <td class="offense-col">-</td>
+
+            <td class="offense-col">-</td>
+            <td class="defense-col">-</td>
+            <td class="defense-col">-</td>
+            <td class="total-col">0</td>
+		</tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
 {% endblock %}

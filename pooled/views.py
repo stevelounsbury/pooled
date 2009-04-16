@@ -14,7 +14,8 @@ from forms import *
 
 @login_required
 def index(request):
-    return render_to_response('pooled/index.html', context_instance=RequestContext(request))
+    users = User.objects.all().order_by('username')
+    return render_to_response('pooled/index.html', {'users': users}, context_instance=RequestContext(request))
 
 @login_required
 def pick_cup(request):
@@ -55,12 +56,15 @@ def pick_cup(request):
 @login_required
 def pick_players(request):
     template_to_render = "pooled/picks/make_picks.html"
-    try:
-        current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
-                                                  end_date__gte=datetime.datetime.now())[0]
-    except:
-        return render_to_response("pooled/picks/closed.html",
-                                  context_instance=RequestContext(request))
+    current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
+                                                  end_date__gte=datetime.datetime.now())
+    
+    picks_open=True
+    if current_pick_round.count() == 0:
+        request.user.message_set.create(message='Cup picks closed for this round.')
+        return HttpResponseRedirect("/picks/view/")
+    
+    current_pick_round = current_pick_round[0]
     
     this_pool = Pool.objects.get(pk=1)
     
@@ -73,7 +77,7 @@ def pick_players(request):
     # the two form elements named id-team tend to clash a bit
     cup_pick_form.auto_id = 'cup-pick-%s'
     
-    if request.method == 'POST':
+    if request.method == 'POST' and picks_open:
         pick_form = PickForm(request.POST)
         if pick_form.is_valid():
             player = Player.objects.get(pk=pick_form.cleaned_data['player_id'])
@@ -110,7 +114,49 @@ def pick_players(request):
                                'eastern_goalies': eastern_goalies,
                                'western_goalies': western_goalies,
                                'cup_pick_form': cup_pick_form,
-                               'pick_form': pick_form},
+                               'pick_form': pick_form,
+                               'the_user': request.user,
+                               'picks_open': True},
+                              context_instance=RequestContext(request))
+
+@login_required
+def picks_view(request, username=False):
+    user = request.user
+    if username:
+        user = User.objects.filter(username=username)
+        if user.count() == 0:
+            raise Http404()
+        user = user[0]
+    
+    template_to_render = "pooled/picks/make_picks.html"
+    current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
+                                                  end_date__gte=datetime.datetime.now())
+    
+    if current_pick_round.count() > 0:
+        # Can't view picks until picks are closed.
+        return render_to_response('pooled/picks/still_open.html',
+                                  context_instance=RequestContext(request))
+    
+    round = Round.objects.get(pk=1)
+    
+    this_pool = Pool.objects.get(pk=1)
+    cup_pick = CupPick.objects.filter(user=user, pool=this_pool)
+    cup_pick = cup_pick[0]
+    
+    p = Pick()
+    eastern_players = p.get_eastern_picks(user, this_pool, round)
+    western_players = p.get_western_picks(user, this_pool, round)
+    eastern_goalies = p.get_eastern_goalies(user, this_pool, round)
+    western_goalies = p.get_western_goalies(user, this_pool, round)
+    
+    return render_to_response(template_to_render,
+                              {'eastern_players': eastern_players,
+                               'western_players': western_players,
+                               'eastern_goalies': eastern_goalies,
+                               'western_goalies': western_goalies,
+                               'cup_pick': cup_pick,
+                               'the_user': user,
+                               'picks_open': False},
                               context_instance=RequestContext(request))
 
 @login_required
