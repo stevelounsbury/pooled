@@ -10,11 +10,11 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE 		= 'mysql'        # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME 			= 'djangotest'   # Or path to database file if using sqlite3.
+DATABASE_NAME 			= 'testingdjango'   # Or path to database file if using sqlite3.
 DATABASE_USER 			= 'root'         # Not used with sqlite3.
-DATABASE_PASSWORD 	= 'root'         # Not used with sqlite3.
-DATABASE_HOST 			= 'localhost'    # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT 			= ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_PASSWORD 	= ''         # Not used with sqlite3.
+DATABASE_HOST 			= ''    # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT 			= '3306'             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,10 +69,10 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/steve/django/pool/templates',
+    'c:/django-projects/poold/templates',
 )
 
-STATIC_DOC_ROOT = '/home/steve/django/pool/working/mockups'
+STATIC_DOC_ROOT = 'c:/django-projects/poold/working/mockups'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
