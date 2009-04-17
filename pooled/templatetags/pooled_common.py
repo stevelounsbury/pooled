@@ -1,5 +1,5 @@
 from django import template
-from pooled.models import PlayerStat, Pool, CupPick
+from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat
 
 register = template.Library()
 
@@ -16,4 +16,10 @@ def user_profile(user):
         cup_pick = CupPick.objects.filter(user=user, pool=this_pool)[0]
     except:
         cup_pick = False
-    return {'cup_pick': cup_pick, 'user':user}
+        
+    current_stat = LeaderboardStat.objects.filter(current=True, user=user)
+    if current_stat.count() == 0:
+        current_stat = False
+    else:
+        current_stat = current_stat[0]
+    return {'cup_pick': cup_pick, 'current_stat': current_stat, 'user':user}

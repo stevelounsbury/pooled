@@ -169,10 +169,13 @@ class PointsScheme(models.Model):
     current = models.BooleanField()
     g = models.IntegerField('points for a goal')
     a = models.IntegerField('points for an assist')
-    gwg = models.IntegerField('points for a game winning goal')
-    so = models.IntegerField('points for a shutout')
+    gwg = models.IntegerField('extra points for a game winning goal')
+    so = models.IntegerField('extra points for a shutout')
     win = models.IntegerField('points for a win')
     created = models.DateTimeField(auto_now_add=True)
+    
+    def __unicode__(self):
+        return "%s per goal, %s per assist, %s extra for gwg, %s for win, %s extra for shutout" % (self.g, self.a, self.gwg, self.win, self.so)
     
 class LeaderboardStat(models.Model):
     user = models.ForeignKey(User)
@@ -189,5 +192,9 @@ class LeaderboardStat(models.Model):
     gwg = models.IntegerField('game winning goals')
     so = models.IntegerField('shut outs')
     win = models.IntegerField('wins')
+    pts = models.IntegerField('points')
     created = models.DateTimeField(auto_now_add=True)
+    
+    def __unicode__(self):
+        return "%s had %spts on %s" % (self.user.username, self.pts, self.created)
     

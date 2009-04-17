@@ -14,8 +14,8 @@ from forms import *
 
 @login_required
 def index(request):
-    users = User.objects.all().order_by('username')
-    return render_to_response('pooled/index.html', {'users': users}, context_instance=RequestContext(request))
+    leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts')
+    return render_to_response('pooled/index.html', {'leaderboard': leaderboard}, context_instance=RequestContext(request))
 
 @login_required
 def pick_cup(request):

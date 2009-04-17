@@ -28,8 +28,8 @@ class Command(AppCommand):
     def handle_app(self, app, **options):
         self.debug = options.get('debug', False)
         print self.debug
-        player_stats = self.get_mechanized_browser("http://www.sportsnet.ca/hockey/nhl/stats/skaters")
-        goalie_stats = self.get_mechanized_browser("http://www.sportsnet.ca/hockey/nhl/stats/goalies")
+        player_stats = self.get_mechanized_browser("http://www.sportsnet.ca/hockey/nhl/stats/playoffs/skaters")
+        goalie_stats = self.get_mechanized_browser("http://www.sportsnet.ca/hockey/nhl/stats/playoffs/goalies")
         # we're updating the stats, so all the old stats are not current
         if not self.debug:
             print "Setting all Player and Goalie stats to old."

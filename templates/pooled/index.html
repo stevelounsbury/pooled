@@ -7,7 +7,7 @@
         <tr>
             <th>&nbsp;</th>
             <th class="cup-winner">&nbsp;</th>
-            <th class="owner-col">Team</th>					
+            <th class="owner-col">Username</th>					
             <th class="stat">G</th>
             <th class="stat">A</th>
 
@@ -18,20 +18,20 @@
         </tr>
     </thead>
     <tbody>
-    {% for u in users %}
+    {% for leader in leaderboard %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            {% for pick in u.cuppick_set.all %}
+            {% for pick in leader.user.cuppick_set.all %}
             <td class="cup-winner"><img src="/pooled_media/images/teams/sml/{{ pick.team.slug|lower }}.gif" /></td>
             {% endfor %}
-            <td class="owner-col"><a href="/picks/view/{{u.username}}">{{ u.username }} <em>+/-</em></a></td>
-            <td class="offense-col">-</td>
-            <td class="offense-col">-</td>
+            <td class="owner-col"><a href="/picks/view/{{leader.user.username}}">{{ leader.user.username }} <em>{{ leader.change }}</em></a></td>
+            <td class="offense-col">{{ leader.g }}</td>
+            <td class="offense-col">{{ leader.a }}</td>
 
-            <td class="offense-col">-</td>
-            <td class="defense-col">-</td>
-            <td class="defense-col">-</td>
-            <td class="total-col">0</td>
+            <td class="offense-col">{{ leader.gwg }}</td>
+            <td class="defense-col">{{ leader.win }}</td>
+            <td class="defense-col">{{ leader.so }}</td>
+            <td class="total-col">{{ leader.pts }}</td>
 		</tr>
     {% endfor %}
     </tbody>

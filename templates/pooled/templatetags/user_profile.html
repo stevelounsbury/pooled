@@ -8,8 +8,17 @@
             {% endif %}
             <h3>{{ user.username }}</h3>
             <ul>
-                <li>current rank : <em>-</em></li>
-                <li>points behind leader : <em>-</em></li>
+                {% if current_stat %}
+                    <li>current rank : <em>{{ current_stat.rank }}</em></li>
+                    {% if current_stat.is_leader %}
+                    <li>you are the pool leader.</li>
+                    {% else %}
+                    <li>points behind leader : <em>{{ current_stat.points_behind }}</em></li>
+                    {% endif %}
+                {% else %}
+                    <li>current rank : <em>-</em></li>
+                    <li>points behind leader: <em>-</em></li>
+                {% endif %}
                 <li><a href="{% url django.contrib.auth.views.logout_then_login %}">Logout</a></li>
             </ul>           
             <div style="clear:both"></div>
