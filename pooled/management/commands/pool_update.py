@@ -85,7 +85,7 @@ class Command(AppCommand):
             i = i+1
             stat.rank = i
             stat.points_behind = leader.pts - stat.pts
-            if leader.pts == stats.pts:
+            if leader.pts == stat.pts:
                 stat.is_leader = True
             old_stat = LeaderboardStat.objects.filter(user=stat.user, current=False).order_by('-created')
             if old_stat.count() == 0:
