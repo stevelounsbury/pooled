@@ -28,7 +28,7 @@ class Command(AppCommand):
             return
         scoring_model = scoring_model[0]
         # we're updating the stats, so all the old stats are not current
-        if self.debug:
+        if not self.debug:
             LeaderboardStat.objects.all().update(current=False)
         print "Updating pool stats, using the following scoring model:"
         print scoring_model
@@ -92,7 +92,7 @@ class Command(AppCommand):
                 stat.change = 0
             else:
                 old_stat = old_stat[0]
-                stat.change = stat.rank - old_stat.rank
+                stat.change = old_stat.rank - stat.rank
             stat.save()
 
     def get_player_stats(self, player, previous_round):

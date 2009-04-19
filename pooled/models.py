@@ -25,6 +25,8 @@ class Team(models.Model):
         return self.name
 
 class Player(models.Model):
+    class Meta:
+        ordering = ['name']
     team = models.ForeignKey(Team)
     name = models.CharField(max_length=128)
     position = models.CharField(max_length=8)

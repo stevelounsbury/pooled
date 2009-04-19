@@ -24,6 +24,7 @@ class Command(AppCommand):
     )
     
     debug = False
+    first_player = False
 
     def handle_app(self, app, **options):
         self.debug = options.get('debug', False)
@@ -80,6 +81,11 @@ class Command(AppCommand):
         for tr in table.findAll('tr')[1:]:
             col = tr.findAll('td')
             player = self.get_player(col)
+            if not self.first_player:
+                self.first_player = player
+            elif self.first_player == player:
+                print "Sportsnet Fucked up their pagination again"
+                return;
             
             gp = int(col[2].string.strip())
             g = int(col[3].string.strip())
