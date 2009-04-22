@@ -125,7 +125,6 @@ class Pick(models.Model):
         return self.get_conference_players(user, pool, round, 'W')
     def get_western_goalies(self, user, pool, round):
         return self.get_conference_goalies(user, pool, round, 'W')
-    
     def get_conference_players(self, user, pool, round, conference):
         return Pick.objects.filter(
             user=user,
@@ -133,14 +132,34 @@ class Pick(models.Model):
             pool=pool,
             player__team__conference=conference,
         ).exclude(player__position='G')
-    def get_conference_goalies(self, user, pool, round, conference):
-        return Pick.objects.filter(
+	
+	def get_conference_goalies(self, user, pool, round, conference):
+		return Pick.objects.filter(
             user=user,
             round=round,
             pool=pool,
             player__team__conference=conference,
             player__position='G'
         )
+
+class PickStatsManager(models.Manager):
+	def get_top_picks_summary(self):
+		from django.db import connection
+		cursor = connection.cursor()
+		cursor.execute ("""
+			SELECT player_id, pooled_player.name, pooled_team.slug, position, team_id, nhlcom,sportsnet, count(1) as selected FROM `pooled_pick`
+			left join pooled_player on pooled_player.id = pooled_pick.player_id
+			left join pooled_team on pooled_player.team_id = pooled_team.id
+			group by player_id 
+			order by selected desc
+			limit 0, 10
+			""")
+		return cursor.fetchall()
+
+class PickStats:
+	player = models.ForeignKey(Player)
+	objects = PickStatsManager()
+		
 
 class CupPick(models.Model):
     user = models.ForeignKey(User)

@@ -1,5 +1,5 @@
 from django import template
-from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat
+from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat, PickStats
 
 register = template.Library()
 
@@ -23,3 +23,8 @@ def user_profile(user):
     else:
         current_stat = current_stat[0]
     return {'cup_pick': cup_pick, 'current_stat': current_stat, 'user':user}
+	
+@register.inclusion_tag('pooled/templatetags/top_picks.html')
+def top_picks(num=5):
+    toppicks = PickStats.objects.get_top_picks_summary()
+    return {'toppicks': toppicks}
