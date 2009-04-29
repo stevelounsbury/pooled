@@ -13,9 +13,22 @@ from models import *
 from forms import *
 
 @login_required
-def index(request):
-    leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts')
-    return render_to_response('pooled/index.html', {'leaderboard': leaderboard}, context_instance=RequestContext(request))
+def index(request, round=False):
+    if round == False:
+        leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts', 'user')
+        the_round = Round.objects.get(active=True)
+    else:
+        try:
+            the_round = Round.objects.get(pk=round)
+        except:
+            raise Http404()
+        
+        if the_round.active:
+            leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts', 'user')
+        else:
+            leaderboard = LeaderboardStat.objects.filter(is_final=True, round=the_round).order_by('-pts', 'user')
+    
+    return render_to_response('pooled/index.html', {'leaderboard': leaderboard, 'round': the_round}, context_instance=RequestContext(request))
 
 @login_required
 def pick_cup(request):
@@ -120,7 +133,7 @@ def pick_players(request):
                               context_instance=RequestContext(request))
 
 @login_required
-def picks_view(request, username=False):
+def picks_view(request, username=False, round=False):
     user = request.user
     if username:
         user = User.objects.filter(username=username)
@@ -130,24 +143,28 @@ def picks_view(request, username=False):
     
     template_to_render = "pooled/picks/make_picks.html"
     current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
-                                                  end_date__gte=datetime.datetime.now())
-    
+                                                  end_date__gte=datetime.datetime.now(),
+                                                  current_round__pk=round)
+        
     if current_pick_round.count() > 0:
         # Can't view picks until picks are closed.
         return render_to_response('pooled/picks/still_open.html',
                                   context_instance=RequestContext(request))
     
-    round = Round.objects.get(pk=1)
+    try:
+        the_round = Round.objects.get(pk=round)
+    except:
+        raise Http404()
     
     this_pool = Pool.objects.get(pk=1)
     cup_pick = CupPick.objects.filter(user=user, pool=this_pool)
     cup_pick = cup_pick[0]
     
     p = Pick()
-    eastern_players = p.get_eastern_picks(user, this_pool, round)
-    western_players = p.get_western_picks(user, this_pool, round)
-    eastern_goalies = p.get_eastern_goalies(user, this_pool, round)
-    western_goalies = p.get_western_goalies(user, this_pool, round)
+    eastern_players = p.get_eastern_picks(user, this_pool, the_round)
+    western_players = p.get_western_picks(user, this_pool, the_round)
+    eastern_goalies = p.get_eastern_goalies(user, this_pool, the_round)
+    western_goalies = p.get_western_goalies(user, this_pool, the_round)
     
     return render_to_response(template_to_render,
                               {'eastern_players': eastern_players,

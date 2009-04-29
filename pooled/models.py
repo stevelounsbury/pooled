@@ -38,6 +38,7 @@ class Player(models.Model):
 
 class Round(models.Model):
     name = models.CharField(max_length=30)
+    previous = models.ForeignKey('self', blank=True, null=True)
     active = models.BooleanField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
@@ -200,8 +201,10 @@ class PointsScheme(models.Model):
 class LeaderboardStat(models.Model):
     user = models.ForeignKey(User)
     pool = models.ForeignKey(Pool)
+    round = models.ForeignKey(Round)
     points_scheme = models.ForeignKey(PointsScheme)
     current = models.BooleanField()
+    is_final = models.BooleanField()
     is_leader = models.BooleanField()
     is_worst = models.BooleanField()
     change = models.IntegerField('position change')
