@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.auth.models import User
 from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat, PickStats, Player
 
 register = template.Library()
@@ -26,7 +27,8 @@ def user_profile(user):
 
 @register.inclusion_tag('pooled/templatetags/top_picks.html')
 def top_picks(num=5):
-    toppicks = PickStats.objects.get_top_picks_summary()
+    total_users_with_picks = User.objects.all().count()
+    toppicks = PickStats.objects.get_top_picks_summary(total_users_with_picks )
     return {'toppicks': toppicks}
 
 @register.filter

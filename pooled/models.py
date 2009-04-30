@@ -144,19 +144,30 @@ class Pick(models.Model):
         )
 
 class PickStatsManager(models.Manager):
-    def get_top_picks_summary(self):
+    def get_top_picks_summary(self, total_users_with_picks):
         from django.db import connection
         cursor = connection.cursor()
         cursor.execute ("""
-            SELECT player_id, pooled_player.name, pooled_team.slug, position, team_id, nhlcom,sportsnet, count(1) as selected FROM `pooled_pick`
+            SELECT player_id, pooled_player.name, pooled_team.slug, position, team_id, nhlcom,sportsnet, round(count(1) / %s * 100) as selected FROM `pooled_pick`
             left join pooled_player on pooled_player.id = pooled_pick.player_id
             left join pooled_team on pooled_player.team_id = pooled_team.id
+            where pooled_pick.round_id= 1
             group by player_id 
             order by selected desc
             limit 0, 10
-            """)
+            """, 
+            [total_users_with_picks])
         return cursor.fetchall()
-
+    def get_total_users_with_picks(self):
+        from django.db import connection
+        cursor = connection.cursor()
+        cursor.execute ("""
+        	select count(1) from users 
+		    """)
+        #where exists (select 1 from pooled_pick where pooled_pick.player_id = users.id and pooled_pick.pool_id = 1)
+        row = cursor.fetchone()
+        return row[0]
+		
 class PickStats:
     player = models.ForeignKey(Player)
     objects = PickStatsManager()
