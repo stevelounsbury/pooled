@@ -1,4 +1,5 @@
 {% extends "pooled/layout_homepage.html" %}
+{% load pooled_common %}
 {% block body_id %}team{% endblock %}
 {% block body_class %}{{ user.get_profile.favourite_team.slug|lower }}{% endblock %}
 {% block content %}
@@ -15,12 +16,35 @@
                 })
             </script>
         </form>
+        {% else %}
+            <h2 class="cup-winners">The <strong>{{ cup_pick.team }}</strong> will win the Stanley Cup.</h2>
         {% endif %}
         {% else %}
             <h2 class="cup-winners">The <strong>{{ cup_pick.team }}</strong> will win the Stanley Cup.</h2>
         {% endif %}
         <p class="util-links">
-            <a href="#" class="selected">round 1</a> | round 2 | round 3 | round 4</a>
+            {% for a_round in 4|get_range %}
+                {% if forloop.counter|gt:active_round %}
+                    round {{ forloop.counter }}
+                {% else %}
+                {% if picks_open %}
+                    {% ifequal forloop.counter active_round %}
+                    <a href="{% url pooled.views.pick_players %}" class="selected">round 2</a>
+                    {% else %}
+                    <a href="{% url pooled.views.picks_view username=the_user.username,round=forloop.counter %}">round {{ forloop.counter }}</a>
+                    {% endifequal %}
+                {% else %}
+                    {% ifequal forloop.counter this_round %}
+                    <a href="{% url pooled.views.picks_view username=the_user.username,round=forloop.counter %}" class="selected">round {{ forloop.counter }}</a>
+                    {% else %}
+                    <a href="{% url pooled.views.picks_view username=the_user.username,round=forloop.counter %}">round {{ forloop.counter }}</a>
+                    {% endifequal %}
+                {% endif %}
+                {% endif %}
+                {% if not forloop.last %}
+                |
+                {% endif %}
+            {% endfor %}
         </p>
         <h2>{{ the_user.username }}</h2>
         {% if picks_open %}
