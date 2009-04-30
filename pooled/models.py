@@ -151,6 +151,7 @@ class PickStatsManager(models.Manager):
             SELECT player_id, pooled_player.name, pooled_team.slug, position, team_id, nhlcom,sportsnet, round(count(1) / %s * 100) as selected FROM `pooled_pick`
             left join pooled_player on pooled_player.id = pooled_pick.player_id
             left join pooled_team on pooled_player.team_id = pooled_team.id
+            where pooled_pick.round_id= 1
             group by player_id 
             order by selected desc
             limit 0, 10
