@@ -26,7 +26,8 @@ def user_profile(user):
 
 @register.inclusion_tag('pooled/templatetags/top_picks.html')
 def top_picks(num=5):
-    toppicks = PickStats.objects.get_top_picks_summary()
+    total_users_with_picks = PickStats.objects.get_total_users_with_picks()
+    toppicks = PickStats.objects.get_top_picks_summary(total_users_with_picks )
     return {'toppicks': toppicks}
 
 @register.filter
