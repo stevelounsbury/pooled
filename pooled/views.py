@@ -13,9 +13,22 @@ from models import *
 from forms import *
 
 @login_required
-def index(request):
-    leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts')
-    return render_to_response('pooled/index.html', {'leaderboard': leaderboard}, context_instance=RequestContext(request))
+def index(request, round=False):
+    if round == False:
+        leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts', 'user')
+        the_round = Round.objects.get(active=True)
+    else:
+        try:
+            the_round = Round.objects.get(pk=round)
+        except:
+            raise Http404()
+        
+        if the_round.active:
+            leaderboard = LeaderboardStat.objects.filter(current=True).order_by('-pts', 'user')
+        else:
+            leaderboard = LeaderboardStat.objects.filter(is_final=True, round=the_round).order_by('-pts', 'user')
+    
+    return render_to_response('pooled/index.html', {'leaderboard': leaderboard, 'round': the_round}, context_instance=RequestContext(request))
 
 @login_required
 def pick_cup(request):
@@ -65,6 +78,7 @@ def pick_players(request):
         return HttpResponseRedirect("/picks/view/")
     
     current_pick_round = current_pick_round[0]
+    active_round = current_pick_round.current_round.pk
     
     this_pool = Pool.objects.get(pk=1)
     
@@ -72,6 +86,7 @@ def pick_players(request):
         my_pick = CupPick.objects.filter(user=request.user, pool=this_pool)[0]
         cup_pick_form = CupPickForm(instance=my_pick)
     except:
+        my_pick = False
         cup_pick_form = CupPickForm()
         
     # the two form elements named id-team tend to clash a bit
@@ -114,13 +129,16 @@ def pick_players(request):
                                'eastern_goalies': eastern_goalies,
                                'western_goalies': western_goalies,
                                'cup_pick_form': cup_pick_form,
+                               'cup_pick': my_pick,
                                'pick_form': pick_form,
+                               'active_round': int(active_round),
+                               'this_round': int(active_round),
                                'the_user': request.user,
                                'picks_open': True},
                               context_instance=RequestContext(request))
 
 @login_required
-def picks_view(request, username=False):
+def picks_view(request, username=False, round=False):
     user = request.user
     if username:
         user = User.objects.filter(username=username)
@@ -128,26 +146,36 @@ def picks_view(request, username=False):
             raise Http404()
         user = user[0]
     
+    the_round=Round.objects.get(active=True)
+    active_round=the_round.pk
+    if not round:
+        round = active_round
+    else:
+        try:
+            the_round = Round.objects.get(pk=round)
+        except:
+            raise Http404()
+            
     template_to_render = "pooled/picks/make_picks.html"
     current_pick_round = PickRound.objects.filter(start_date__lte=datetime.datetime.now(),
-                                                  end_date__gte=datetime.datetime.now())
-    
+                                                  end_date__gte=datetime.datetime.now(),
+                                                  current_round__pk=round)
+        
     if current_pick_round.count() > 0:
         # Can't view picks until picks are closed.
-        return render_to_response('pooled/picks/still_open.html',
-                                  context_instance=RequestContext(request))
+        request.user.message_set.create(message='You can view picks once everyone has completed them for this round')
+        return HttpResponseRedirect("/picks/")
     
-    round = Round.objects.get(pk=1)
     
     this_pool = Pool.objects.get(pk=1)
     cup_pick = CupPick.objects.filter(user=user, pool=this_pool)
     cup_pick = cup_pick[0]
     
     p = Pick()
-    eastern_players = p.get_eastern_picks(user, this_pool, round)
-    western_players = p.get_western_picks(user, this_pool, round)
-    eastern_goalies = p.get_eastern_goalies(user, this_pool, round)
-    western_goalies = p.get_western_goalies(user, this_pool, round)
+    eastern_players = p.get_eastern_picks(user, this_pool, the_round)
+    western_players = p.get_western_picks(user, this_pool, the_round)
+    eastern_goalies = p.get_eastern_goalies(user, this_pool, the_round)
+    western_goalies = p.get_western_goalies(user, this_pool, the_round)
     
     return render_to_response(template_to_render,
                               {'eastern_players': eastern_players,
@@ -156,6 +184,8 @@ def picks_view(request, username=False):
                                'western_goalies': western_goalies,
                                'cup_pick': cup_pick,
                                'the_user': user,
+                               'active_round': int(active_round),
+                               'this_round': int(round),
                                'picks_open': False},
                               context_instance=RequestContext(request))
 

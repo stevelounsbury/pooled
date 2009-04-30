@@ -1,5 +1,5 @@
 from django import template
-from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat, PickStats
+from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat, PickStats, Player
 
 register = template.Library()
 
@@ -28,3 +28,17 @@ def user_profile(user):
 def top_picks(num=5):
     toppicks = PickStats.objects.get_top_picks_summary()
     return {'toppicks': toppicks}
+
+@register.filter
+def get_range(value):
+    return range(value)
+
+@register.filter
+def gt(value, arg):
+    "Returns a boolean of whether the value is greater than the argument"
+    return int(value) > int(arg)
+
+@register.filter
+def lt(value, arg):
+    "Returns a boolean of whether the value is less than the argument"
+    return value < int(arg)

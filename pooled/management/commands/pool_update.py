@@ -22,6 +22,18 @@ class Command(AppCommand):
         self.debug = options.get('debug', False)
         this_pool = Pool.objects.get(pk=1)
         
+        round = Round.objects.filter(active=True)
+        if round.count() != 1:
+            print "ERROR: Either there is no current round set or there is more than one active round, please check."
+            return
+        
+        round = round[0]
+        print "Active round is %s" % round
+        if round.previous is None:
+            print "    This round does not have a previous round."
+        else:
+            print "    The previous round was %s" % round.previous
+        
         scoring_model = PointsScheme.objects.filter(current=True)
         if scoring_model.count() == 0:
             print "Oops, couldn't find a current points scheme. Please create one"
@@ -35,15 +47,22 @@ class Command(AppCommand):
 
         for user in User.objects.all():
             print user
-            total_stats = {'gwg': 0, 'g': 0, 'a': 0, 'so': 0, 'w': 0, 'pts': 0}
+            if round.previous is None:
+                total_stats = {'gwg': 0, 'g': 0, 'a': 0, 'so': 0, 'w': 0, 'pts': 0}
+            else:
+                # if we have a previous round, starting points are those at the
+                # end of the previous round.
+                last_round = user.pick_set.filter(created__range=(datetime.datetime.combine(round.previous.end_date, datetime.time.min),
+                                                                  datetime.datetime.combine(round.previous.end_date, datetime.time.max)))
+            
             for pick in user.pick_set.all():
                 if pick.player.position.upper() == 'G':
-                    stat = self.get_goalie_stats(pick.player, False)
+                    stat = self.get_goalie_stats(pick.player, round.previous)
                     if stat:
                         total_stats['so'] += stat['so']
                         total_stats['w'] += stat['w']
                 else:
-                    stat = self.get_player_stats(pick.player, False)
+                    stat = self.get_player_stats(pick.player, round.previous)
                     if stat:
                         total_stats['gwg'] += stat['gwg']
                         total_stats['g'] += stat['g']
@@ -59,8 +78,10 @@ class Command(AppCommand):
             else:
                 stat = LeaderboardStat(user=user,
                                        pool=this_pool,
+                                       round=round,
                                        points_scheme=scoring_model,
                                        current=True,
+                                       is_final=False,
                                        is_leader=False,
                                        is_worst=False,
                                        change=0,
@@ -101,10 +122,11 @@ class Command(AppCommand):
             print "WARN :: Could not find a current player stat for %s" % player.name
             return False
         current = current[0]
-        if not previous_round:
+        if previous_round is None:
             return {'g': current.g, 'a': current.a, 'gwg': current.gwg}
         else:
-            last_round = player.playerstat_set.filter(created__range=(datetime.datetime.combine(previous_round, datetime.time.min), datetime.datetime.combine(previous_round, datetime.time.max)))
+            last_round = player.playerstat_set.filter(created__range=(datetime.datetime.combine(previous_round.end_date, datetime.time.min),
+                                                                      datetime.datetime.combine(previous_round.end_date, datetime.time.max)))
             if last_round.count() == 0:
                 print "ERROR :: Could not find last stat for player: %s" % player.name
                 return False
@@ -121,10 +143,11 @@ class Command(AppCommand):
             print "WARN :: Could not find a current goalie stat for %s" % player.name
             return False
         current = current[0]
-        if not previous_round:
+        if previous_round is None:
             return {'w': current.w, 'so': current.so}
         else:
-            last_round = player.goaliestat_set.filter(created__range=(datetime.datetime.combine(previous_round, datetime.time.min), datetime.datetime.combine(previous_round, datetime.time.max)))
+            last_round = player.goaliestat_set.filter(created__range=(datetime.datetime.combine(previous_round.end_date, datetime.time.min),
+                                                                      datetime.datetime.combine(previous_round.end_date, datetime.time.max)))
             if last_round.count() == 0:
                 print "ERROR :: Could not find last stat for goalie: %s" % player.name
                 return False
