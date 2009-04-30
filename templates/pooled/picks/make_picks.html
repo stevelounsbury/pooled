@@ -29,7 +29,7 @@
                 {% else %}
                 {% if picks_open %}
                     {% ifequal forloop.counter active_round %}
-                    <a href="{% url pooled.views.pick_players %}" class="selected">round 2</a>
+                    <a href="{% url pooled.views.pick_players %}" class="selected">round {{ active_round }}</a>
                     {% else %}
                     <a href="{% url pooled.views.picks_view username=the_user.username,round=forloop.counter %}">round {{ forloop.counter }}</a>
                     {% endifequal %}
