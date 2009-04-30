@@ -8,8 +8,8 @@
 				<tbody>
 					{% for player_id, player_name, pooled_team_slug, position, team_id, nhlcom,sportsnet, selected in toppicks %}
 					<tr>
-						<td class="value-col">{{ selected}}</td>
-						<td><a href="http://www.sportsnet.ca/hockey/nhl/players/{{ score.player.sportsnet }}/" target="_blank">{{ player_name }}</a></td>
+						<td class="value-col">{{ selected}} %</td>
+						<td><a href="http://www.sportsnet.ca/hockey/nhl/players/{{ sportsnet }}/" target="_blank">{{ player_name }}</a></td>
 						<td class="team-col">{{ pooled_team_slug|upper }}</td>
 					</tr>
 					{% endfor %}
