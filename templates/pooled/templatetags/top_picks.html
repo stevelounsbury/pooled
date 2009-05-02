@@ -1,19 +1,39 @@
 		<div id="top-performers" class="box">
-			<table summary="Top Picks">
-				<thead>
-					<tr>
-						<th colspan="3"><h2>Top Picks</h2></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for player_id, player_name, pooled_team_slug, position, team_id, nhlcom,sportsnet, selected in toppicks %}
+		<h2>Top Picks</h2>
+        <p class="util-links">
+            <a class="top-picks-round-selector selected" value="1">Round 1</a>
+            <a class="top-picks-round-selector" value="2">Round 2</a>
+            <a class="top-picks-round-selector" value="3">Round 3</a>
+            <a class="top-picks-round-selector" value="4">Round 4</a>
+            
+        </p>
+        <br /><br />
+        {% for toppicks_round in toppicks %}
+        <div id="round{{forloop.counter}}" class="top-picks-round{{forloop.counter}} top-picks-round-dependent"><br />				
+        <table summary="Top Picks">			
+            <tbody>
+					{% for player_id, player_name, pooled_team_slug, position, team_id, nhlcom,sportsnet, selected in toppicks_round %}
 					<tr>
 						<td class="value-col">{{ selected}} %</td>
 						<td><a href="http://www.sportsnet.ca/hockey/nhl/players/{{ sportsnet }}/" target="_blank">{{ player_name }}</a></td>
 						<td class="team-col">{{ pooled_team_slug|upper }}</td>
 					</tr>
 					{% endfor %}
-				</tbody>
+        		</tbody>
 			</table>
-			
-		</div>
+        </div>
+        {% endfor %}
+    </div>
+
+<script language="javascript">
+$(document).ready(function () {
+    $(".top-picks-round-dependent").hide();
+    $(".top-picks-round1").show();
+    $(".top-picks-round-selector").click(function() {
+        $(".top-picks-round-dependent").hide();
+        $(".top-picks-round-selector").removeClass("selected");
+        $(this).addClass("selected");
+        $(".top-picks-round" +$(this).attr('value') ).fadeIn("slow");
+    });
+});
+</script>

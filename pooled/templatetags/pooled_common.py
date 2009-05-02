@@ -1,6 +1,6 @@
 from django import template
 from django.contrib.auth.models import User
-from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat, PickStats, Player
+from pooled.models import PlayerStat, Pool, CupPick, LeaderboardStat, PickStats, Player, PickRound
 
 register = template.Library()
 
@@ -28,7 +28,17 @@ def user_profile(user):
 @register.inclusion_tag('pooled/templatetags/top_picks.html')
 def top_picks(num=5):
     total_users_with_picks = User.objects.all().count()
-    toppicks = PickStats.objects.get_top_picks_summary(total_users_with_picks )
+    toppicks = []
+    #This should be a for loop, but i couldnt get the syntax
+    if PickRound.current_round > 0:
+        toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 1 ))
+    if PickRound.current_round > 1:
+        toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 2 ))
+    if PickRound.current_round > 3:
+        toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 3 ))
+    if PickRound.current_round > 4:
+        toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 4 ))
+    
     return {'toppicks': toppicks}
 
 @register.filter
