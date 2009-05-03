@@ -29,14 +29,15 @@ def user_profile(user):
 def top_picks(num=5):
     total_users_with_picks = User.objects.all().count()
     toppicks = []
+    pickround = PickRound.objects.get()
     #This should be a for loop, but i couldnt get the syntax
-    if PickRound.current_round > 0:
+    if pickround.current_round > 0:
         toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 1 ))
-    if PickRound.current_round > 1:
+    if pickround.current_round > 1:
         toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 2 ))
-    if PickRound.current_round > 3:
+    if pickround.current_round > 3:
         toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 3 ))
-    if PickRound.current_round > 4:
+    if pickround.current_round > 4:
         toppicks.append(PickStats.objects.get_top_picks_summary(total_users_with_picks, 4 ))
     
     return {'toppicks': toppicks}
