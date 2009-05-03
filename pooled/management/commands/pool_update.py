@@ -52,18 +52,20 @@ class Command(AppCommand):
             else:
                 # if we have a previous round, starting points are those at the
                 # end of the previous round.
-                last_round = user.pick_set.filter(created__range=(datetime.datetime.combine(round.previous.end_date, datetime.time.min),
-                                                                  datetime.datetime.combine(round.previous.end_date, datetime.time.max)))
-            
-            for pick in user.pick_set.all():
+                lr = user.leaderboardstat_set.get(round=round.previous, is_final=True)
+                total_stats = {'gwg': lr.gwg, 'g': lr.g, 'a': lr.a, 'so': lr.so, 'w': lr.win, 'pts': 0}
+            print "    %s has the following stats to start: %s" % (user, total_stats)
+            for pick in user.pick_set.filter(round=round):
                 if pick.player.position.upper() == 'G':
                     stat = self.get_goalie_stats(pick.player, round.previous)
                     if stat:
+                        print "    %s has the following stats %s" % (pick.player, stat)
                         total_stats['so'] += stat['so']
                         total_stats['w'] += stat['w']
                 else:
                     stat = self.get_player_stats(pick.player, round.previous)
                     if stat:
+                        print "    %s has the following stats %s" % (pick.player, stat)
                         total_stats['gwg'] += stat['gwg']
                         total_stats['g'] += stat['g']
                         total_stats['a'] += stat['a']
@@ -73,6 +75,7 @@ class Command(AppCommand):
             total_stats['pts'] += total_stats['a'] * scoring_model.a
             total_stats['pts'] += total_stats['w'] * scoring_model.win
             total_stats['pts'] += total_stats['so'] * scoring_model.so
+            print "    %s has the following stats after update: %s" % (user, total_stats)
             if self.debug:
                 print total_stats
             else:
