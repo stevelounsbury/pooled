@@ -4,6 +4,7 @@ import sys
 from mechanize import Browser
 from BeautifulSoup import BeautifulSoup
 from optparse import make_option
+from tidylib import tidy_document
 
 from django.core.management.base import AppCommand, NoArgsCommand
 from pooled.models import *
@@ -12,7 +13,7 @@ logger = logging.getLogger("mechanize")
 logger.addHandler(logging.StreamHandler(sys.stdout))
 logger.setLevel(logging.INFO)
 
-PLAYER_TABLE_OFFSET = 7
+PLAYER_TABLE_OFFSET = 7 
 GOALIE_TABLE_OFFSET = 6
 
 class Command(AppCommand):
@@ -76,6 +77,7 @@ class Command(AppCommand):
         return p
     
     def get_player_stats(self, soup):
+        print soup.findAll('table')
         table = soup.findAll('table')[PLAYER_TABLE_OFFSET]
         records = list()
         for tr in table.findAll('tr')[1:]:
@@ -165,7 +167,8 @@ class Command(AppCommand):
         while True:
             response = mech.response()
             html = response.read()
-            soup = BeautifulSoup(html)
+            document, errors = tidy_document(html)
+            soup = BeautifulSoup(document)
             callback(soup)
             i+=1
             print "Processed page %d" % i
@@ -180,6 +183,9 @@ class Command(AppCommand):
     def get_mechanized_browser(self, url):
         mech = Browser()
         mech.set_handle_robots(False)
+        mech.set_debug_redirects(self.debug)
+        mech.set_debug_responses(self.debug)
+        mech.set_debug_http(self.debug)
         mech.open(url)
         assert mech.viewing_html()
         return mech
