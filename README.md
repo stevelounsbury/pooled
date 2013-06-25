@@ -1,6 +1,6 @@
 # Pooled
 
-This is a very rough hockey pool written in django. The code is rough because this is my first python/django project. 
+This is a playoff hockey pool written in django. I haven't given this any attention for a long time, so use at your own risk. 
 
 ## Requirements
 
